@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="DM.Workbench.Views.TaskListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <Style x:Key="TaskItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="0,1,0,0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="border" Background="White" BorderBrush="#CFCFCF" BorderThickness="1" CornerRadius="3">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#EEF6FF" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="#5B9BD5" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#DCEEFF" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="#5B9BD5" />
+                            </Trigger>
+                            <DataTrigger Binding="{Binding Enabled}" Value="False">
+                                <Setter TargetName="border" Property="Opacity" Value="0.5" />
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="TaskItemTemplate">
+            <Grid Margin="4,3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <DockPanel Grid.Row="0" LastChildFill="False">
+                    <Ellipse Width="10" Height="10" Margin="6,0,6,0" DockPanel.Dock="Right" VerticalAlignment="Center">
+                        <Ellipse.Style>
+                            <Style TargetType="Ellipse">
+                                <Setter Property="Fill" Value="#C8CCD1" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding State}" Value="Running">
+                                        <Setter Property="Fill" Value="#4DA3FF" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="Success">
+                                        <Setter Property="Fill" Value="#29A35A" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="Failed">
+                                        <Setter Property="Fill" Value="#B94A48" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="Cancelled">
+                                        <Setter Property="Fill" Value="#E0A030" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Ellipse.Style>
+                    </Ellipse>
+                    <TextBlock Width="26" VerticalAlignment="Center" Text="{Binding Order}" />
+                    <TextBlock VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="Green" Text="{Binding Name}" />
+                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" FontSize="11" Opacity="0.55" Text="{Binding TypeName}" />
+                </DockPanel>
+
+                <DockPanel Grid.Row="1" LastChildFill="True" Margin="26,1,0,0">
+                    <TextBlock DockPanel.Dock="Right" Margin="6,0,0,0" FontFamily="Consolas" Text="{Binding ExecutionTimeText}" />
+                    <TextBlock DockPanel.Dock="Right" Margin="6,0,0,0" MaxWidth="170" Foreground="IndianRed"
+                               TextTrimming="CharacterEllipsis" Text="{Binding LastError}" ToolTip="{Binding LastError}" />
+                    <TextBlock Opacity="0.65" TextTrimming="CharacterEllipsis" Text="{Binding Summary}" ToolTip="{Binding Summary}" />
+                </DockPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- 项目栏 -->
+            <RowDefinition Height="Auto" />
+            <!-- 工具栏 -->
+            <RowDefinition Height="*" />
+            <!-- 列表 -->
+            <RowDefinition Height="Auto" />
+            <!-- 属性区 -->
+            <RowDefinition Height="Auto" />
+            <!-- 运行按钮 -->
+            <RowDefinition Height="Auto" />
+            <!-- 消息 -->
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,4" LastChildFill="False">
+            <TextBlock VerticalAlignment="Center" Text="项目：" />
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Foreground="Green" Text="{Binding ActiveProjectName}" />
+            <Ellipse Width="10" Height="10" Margin="8,0,0,0" VerticalAlignment="Center"
+                     ToolTip="红色：任务列表有未保存的修改；绿色：已保存">
+                <Ellipse.Style>
+                    <Style TargetType="Ellipse">
+                        <Setter Property="Fill" Value="Red" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsProjectSaved}" Value="True">
+                                <Setter Property="Fill" Value="Green" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Ellipse.Style>
+            </Ellipse>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                <Button Margin="4,0,0,0" Padding="10,2" Content="新建" Command="{Binding NewProjectCommand}" />
+                <Button Margin="4,0,0,0" Padding="10,2" Content="打开" Command="{Binding OpenProjectCommand}" />
+                <Button Margin="4,0,0,0" Padding="10,2" Content="保存 (Ctrl+S)" Command="{Binding SaveProjectCommand}" />
+            </StackPanel>
+        </DockPanel>
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,4" Orientation="Horizontal">
+            <Button Margin="0,0,4,0" Padding="10,2" Content="添加" Command="{Binding AddTaskCommand}" />
+            <Button Margin="0,0,4,0" Padding="10,2" Content="删除" Command="{Binding DeleteTaskCommand}" />
+            <Button Margin="0,0,4,0" Padding="10,2" Content="上移" Command="{Binding MoveUpCommand}" />
+            <Button Margin="0,0,4,0" Padding="10,2" Content="下移" Command="{Binding MoveDownCommand}" />
+            <Button Margin="0,0,4,0" Padding="10,2" Content="复制" Command="{Binding CopyTaskCommand}" />
+            <Button Padding="10,2" Content="粘贴到下方" Command="{Binding PasteTaskCommand}" />
+        </StackPanel>
+
+        <ListBox x:Name="TaskListBox" Grid.Row="2" BorderBrush="#CFCFCF" BorderThickness="1" AllowDrop="True"
+                 HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ItemContainerStyle="{StaticResource TaskItemStyle}" ItemTemplate="{StaticResource TaskItemTemplate}"
+                 ItemsSource="{Binding TaskList}" SelectedItem="{Binding SelectedTask, Mode=TwoWay}"
+                 SelectionChanged="TaskListBox_SelectionChanged"
+                 PreviewMouseLeftButtonDown="TaskListBox_PreviewMouseLeftButtonDown"
+                 PreviewMouseMove="TaskListBox_PreviewMouseMove" DragOver="TaskListBox_DragOver" Drop="TaskListBox_Drop">
+            <ListBox.InputBindings>
+                <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding SaveProjectCommand}" />
+                <KeyBinding Key="C" Modifiers="Ctrl" Command="{Binding CopyTaskCommand}" />
+                <KeyBinding Key="V" Modifiers="Ctrl" Command="{Binding PasteTaskCommand}" />
+                <KeyBinding Key="Delete" Command="{Binding DeleteTaskCommand}" />
+            </ListBox.InputBindings>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="添加" Command="{Binding AddTaskCommand}" />
+                    <MenuItem Header="删除" Command="{Binding DeleteTaskCommand}" />
+                    <Separator />
+                    <MenuItem Header="上移" Command="{Binding MoveUpCommand}" />
+                    <MenuItem Header="下移" Command="{Binding MoveDownCommand}" />
+                    <MenuItem Header="复制" Command="{Binding CopyTaskCommand}" />
+                    <MenuItem Header="粘贴到下方" Command="{Binding PasteTaskCommand}" />
+                    <Separator />
+                    <MenuItem Header="单步执行" Command="{Binding RunSelectedTaskCommand}" />
+                    <MenuItem Header="连续执行" Command="{Binding RunFlowCommand}" />
+                    <MenuItem Header="停止" Command="{Binding StopFlowCommand}" />
+                    <Separator />
+                    <MenuItem Header="保存" Command="{Binding SaveProjectCommand}" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+
+        <Border Grid.Row="3" Margin="0,4,0,0" Padding="6" BorderBrush="#D0D0D0" BorderThickness="1" IsEnabled="{Binding CanEdit}">
+            <WrapPanel>
+                <TextBlock Margin="0,0,6,0" VerticalAlignment="Center" Opacity="0.6" Text="{Binding SelTypeName}" />
+                <TextBox Width="140" Margin="0,0,10,0" Text="{Binding SelName, UpdateSourceTrigger=LostFocus}" ToolTip="任务名称（列表内唯一）" />
+                <CheckBox Margin="0,0,10,0" VerticalAlignment="Center" Content="启用" IsChecked="{Binding SelEnabled}" />
+                <CheckBox Margin="0,0,10,0" VerticalAlignment="Center" Content="执行后暂停" IsChecked="{Binding SelPauseAfter}" />
+                <TextBlock VerticalAlignment="Center" Text="超时(ms，0=不限)：" />
+                <TextBox Width="70" Text="{Binding SelTimeoutMs, UpdateSourceTrigger=LostFocus}" />
+            </WrapPanel>
+        </Border>
+
+        <UniformGrid Grid.Row="4" Rows="1" Columns="5" Height="44" Margin="0,4,0,0">
+            <Button Margin="2" Content="运行" Command="{Binding RunFlowCommand}" Style="{DynamicResource LabViewButton}" />
+            <Button Margin="2" Content="下一步" Command="{Binding NextStepCommand}" Style="{DynamicResource LabViewButton}" FontFamily="{DynamicResource Iconfont}" Tag="&#xe639;" />
+            <Button Margin="2" Content="循环" Command="{Binding LoopRunCommand}" Style="{DynamicResource LabViewButton}" FontFamily="{DynamicResource Iconfont}" Tag="&#xe86b;" />
+            <Button Margin="2" Content="停止" Command="{Binding StopFlowCommand}" Style="{DynamicResource LabViewButton}" FontFamily="{DynamicResource Iconfont}" Tag="&#xe63e;" />
+            <Button Margin="2" Content="重置" Command="{Binding ResetStateCommand}" Style="{DynamicResource LabViewButton}" />
+        </UniformGrid>
+
+        <Border Grid.Row="5" Margin="0,4,0,0" Padding="6,2" BorderBrush="#D0D0D0" BorderThickness="1">
+            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Message}" />
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,5 @@
+﻿<UserControl x:Class="DM.Workbench.Views.EmptyTaskView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <TextBlock Margin="20" Opacity="0.6" TextWrapping="Wrap" Text="未选中任务，或该任务的类型不可用（可能缺少扩展包）。" />
+</UserControl>

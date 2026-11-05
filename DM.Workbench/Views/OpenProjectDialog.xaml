@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="DM.Workbench.Views.OpenProjectDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/">
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen" />
+            <Setter Property="Width" Value="420" />
+            <Setter Property="Height" Value="400" />
+            <Setter Property="ShowInTaskbar" Value="False" />
+        </Style>
+    </prism:Dialog.WindowStyle>
+    <DockPanel Margin="12">
+        <StackPanel DockPanel.Dock="Bottom" Margin="0,8,0,0">
+            <TextBlock Foreground="#B23A48" Text="{Binding Message}" />
+            <StackPanel Margin="0,6,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="80" Margin="0,0,8,0" Content="打开" IsDefault="True" Command="{Binding ConfirmCommand}" />
+                <Button Width="80" Content="取消" IsCancel="True" Command="{Binding CancelCommand}" />
+            </StackPanel>
+        </StackPanel>
+        <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding Selected}">
+            <ListBox.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ConfirmCommand}" />
+            </ListBox.InputBindings>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <TextBlock DockPanel.Dock="Right" Opacity="0.6" Text="{Binding CreatedUtc, StringFormat={}{0:yyyy-MM-dd HH:mm}}" />
+                        <TextBlock FontWeight="SemiBold" Text="{Binding Name}" />
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</UserControl>

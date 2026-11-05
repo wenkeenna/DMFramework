@@ -1,0 +1,5 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontFamily x:Key="NotoSansSC-Medium">pack://application:,,,/DM.UI.Themes;component/Fonts/#NotoSansSC-Medium</FontFamily>
+    <FontFamily x:Key="NotoSansSC-Thin">pack://application:,,,/DM.UI.Themes;component/Fonts/#NotoSansSC-Thin</FontFamily>
+    <FontFamily x:Key="Iconfont">pack://application:,,,/DM.UI.Themes;component/Fonts/#iconfont</FontFamily>
+</ResourceDictionary>

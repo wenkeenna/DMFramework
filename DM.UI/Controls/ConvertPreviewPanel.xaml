@@ -1,0 +1,21 @@
+﻿<!-- Controls/ConvertPreviewPanel.xaml：自带显示/隐藏，编辑器直接放进去即可 -->
+<UserControl x:Class="DM.UI.Controls.ConvertPreviewPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="B2V" />
+    </UserControl.Resources>
+    <Grid Visibility="{Binding Convertible, Converter={StaticResource B2V}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <DockPanel Margin="0,0,0,2">
+            <Button DockPanel.Dock="Right" Padding="8,0" Content="{Binding ConvertButtonText}" Command="{Binding ConvertCommand}"
+                    ToolTip="转换后不可逆，之后按目标类型的方式编辑" />
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="{Binding ConvertTitle}" />
+        </DockPanel>
+        <TextBox Grid.Row="1" IsReadOnly="True" FontFamily="Consolas" Background="#FAFAFA"
+                 VerticalScrollBarVisibility="Auto" Text="{Binding Preview, Mode=OneWay}" />
+    </Grid>
+</UserControl>
