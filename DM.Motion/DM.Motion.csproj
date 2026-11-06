@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B98D2BE5-3190-4668-A35E-B7A1664B8F90}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <ProjectGuid>{D1480B3D-34EE-4FAD-8505-57C8DF7DFF09}</ProjectGuid>
+    <OutputType>library</OutputType>
     <RootNamespace>DM.Motion</RootNamespace>
     <AssemblyName>DM.Motion</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -37,8 +38,6 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
     </Reference>
@@ -50,35 +49,93 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\HomeCommand.cs" />
-    <Compile Include="Commands\MoveAbsCommand.cs" />
-    <Compile Include="Commands\MoveCommandBase.cs" />
-    <Compile Include="Commands\MoveMultiCommand.cs" />
-    <Compile Include="Commands\MoveRelCommand.cs" />
-    <Compile Include="Commands\SetOutCommand.cs" />
-    <Compile Include="Commands\WaitInCommand.cs" />
-    <Compile Include="Models\AxisConfig.cs" />
-    <Compile Include="Models\IoConfig.cs" />
-    <Compile Include="Models\MotionConfig.cs" />
+    <Compile Include="Commands\MotionCommands.cs" />
+    <Compile Include="Models\MotionModels.cs" />
     <Compile Include="Module\MotionModule.cs" />
-    <Compile Include="Module\MotionScopeExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IMotionDriver.cs" />
-    <Compile Include="Services\IMotionDriverCatalog.cs" />
-    <Compile Include="Services\IMotionService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
     <Compile Include="Services\ManualMotionService.cs" />
+    <Compile Include="Services\MotionContracts.cs" />
     <Compile Include="Services\MotionService.cs" />
+    <Compile Include="TaskEditors\IoExecutionEditorView.xaml.cs">
+      <DependentUpon>IoExecutionEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TaskEditors\IoStepListEditor.xaml.cs">
+      <DependentUpon>IoStepListEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TaskEditors\Line2EditorView.xaml.cs">
+      <DependentUpon>Line2EditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TaskEditors\MotionEditorViewModels.cs" />
+    <Compile Include="TaskEditors\MultiAxisEditorView.xaml.cs">
+      <DependentUpon>MultiAxisEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TaskEditors\SingleAxisEditorView.xaml.cs">
+      <DependentUpon>SingleAxisEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\IoExecutionTaskType.cs" />
+    <Compile Include="Tasks\IoStep.cs" />
+    <Compile Include="Tasks\Line2TaskType.cs" />
+    <Compile Include="Tasks\MotionHelpers.cs" />
+    <Compile Include="Tasks\MultiAxisTaskType.cs" />
+    <Compile Include="Tasks\SingleAxisTaskType.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="TaskEditors\IoExecutionEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskEditors\IoStepListEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskEditors\Line2EditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskEditors\MultiAxisEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskEditors\SingleAxisEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DM.Core\DM.Core.csproj">
@@ -89,9 +146,14 @@
       <Project>{D02F65AC-0DD0-4141-B801-EABA85EA59E0}</Project>
       <Name>DM.Engine</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\DM.Scripting\DM.Scripting.csproj">
+      <Project>{30AC30F0-D41F-4633-BF6E-EB36E48ADF29}</Project>
+      <Name>DM.Scripting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DM.UI\DM.UI.csproj">
+      <Project>{f8e6927b-bb1e-4455-aeb5-3e8717ece028}</Project>
+      <Name>DM.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

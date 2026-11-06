@@ -1,5 +1,3 @@
-D:\项目\DMFramework\DM.Engine\obj\Debug\DM.Engine.csproj.AssemblyReference.cache
-D:\项目\DMFramework\DM.Engine\obj\Debug\DM.Engine.csproj.CoreCompileInputs.cache
 D:\项目\DMFramework\DM.Engine\bin\Debug\DM.Engine.dll
 D:\项目\DMFramework\DM.Engine\bin\Debug\DM.Engine.pdb
 D:\项目\DMFramework\DM.Engine\bin\Debug\DM.Core.dll
@@ -20,6 +18,8 @@ D:\项目\DMFramework\DM.Engine\bin\Debug\Prism.DryIoc.Wpf.pdb
 D:\项目\DMFramework\DM.Engine\bin\Debug\Prism.DryIoc.Wpf.xml
 D:\项目\DMFramework\DM.Engine\bin\Debug\Prism.Wpf.pdb
 D:\项目\DMFramework\DM.Engine\bin\Debug\Prism.Wpf.xml
+D:\项目\DMFramework\DM.Engine\obj\Debug\DM.Engine.csproj.AssemblyReference.cache
+D:\项目\DMFramework\DM.Engine\obj\Debug\DM.Engine.csproj.CoreCompileInputs.cache
 D:\项目\DMFramework\DM.Engine\obj\Debug\DM.Engine.csproj.Up2Date
 D:\项目\DMFramework\DM.Engine\obj\Debug\DM.Engine.dll
 D:\项目\DMFramework\DM.Engine\obj\Debug\DM.Engine.pdb

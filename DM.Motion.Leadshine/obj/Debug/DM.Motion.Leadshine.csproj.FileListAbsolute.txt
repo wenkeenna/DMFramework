@@ -1,0 +1,4 @@
+D:\项目\DMFramework\DM.Motion.Leadshine\obj\Debug\DM.Motion.Leadshine.csproj.AssemblyReference.cache
+D:\项目\DMFramework\DM.Motion.Leadshine\obj\Debug\DM.Motion.Leadshine.Properties.Resources.resources
+D:\项目\DMFramework\DM.Motion.Leadshine\obj\Debug\DM.Motion.Leadshine.csproj.GenerateResource.cache
+D:\项目\DMFramework\DM.Motion.Leadshine\obj\Debug\DM.Motion.Leadshine.csproj.CoreCompileInputs.cache

@@ -1,0 +1,19 @@
+﻿<!--  Themes/Fields.xaml：在 App.xaml 的合并字典里加 pack://application:,,,/DM.UI;component/Themes/Fields.xaml  -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    <Style x:Key="Field" TargetType="HeaderedContentControl">
+        <Setter Property="Width" Value="110" />
+        <Setter Property="Margin" Value="0,0,12,6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="HeaderedContentControl">
+                    <StackPanel>
+                        <TextBlock Margin="0,0,0,2" Text="{TemplateBinding Header}" />
+                        <ContentPresenter />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,108 @@
+﻿<Window x:Class="DM.Shell.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:v="clr-namespace:DM.Shell.Views"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Title="{Binding WindowTitle}" Width="1440" Height="860" MinWidth="1000" MinHeight="600" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="B2V" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0,2,6,2">
+                <TextBlock VerticalAlignment="Center" Margin="0,0,12,0" FontWeight="SemiBold" Text="{Binding IdentityText}" />
+                <Button Width="90" Margin="0,0,6,0" Content="急 停" FontWeight="Bold" Foreground="White" Background="#C62828"
+                        Command="{Binding EmergencyStopCommand}" ToolTip="软件急停：停止所有任务和运动（不能替代硬件急停）" />
+                <Button Width="90" Content="解除急停" Command="{Binding ResetEmergencyCommand}" ToolTip="需要工程师及以上权限"
+                        Visibility="{Binding IsEmergency, Converter={StaticResource B2V}}" />
+            </StackPanel>
+            <Menu>
+                <MenuItem Header="文件(_F)">
+                    <MenuItem Header="退出(_X)" Command="{Binding ExitCommand}" />
+                </MenuItem>
+                <MenuItem Header="用户(_U)">
+                    <MenuItem Header="切换用户(_S)" Command="{Binding SwitchUserCommand}" />
+                    <MenuItem Header="修改密码(_P)" Command="{Binding ChangePasswordCommand}" />
+                    <MenuItem Header="账号管理(_A)" Command="{Binding AccountManagementCommand}" />
+                </MenuItem>
+                <MenuItem Header="查看(_V)">
+                    <MenuItem Header="审计日志(_L)" Command="{Binding AuditViewCommand}" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <Border Grid.Row="1" Background="#C62828" Padding="8,4" Visibility="{Binding IsEmergency, Converter={StaticResource B2V}}">
+            <TextBlock Foreground="White" FontWeight="Bold" Text="{Binding EmergencyText, StringFormat=急停状态：{0}}" />
+        </Border>
+
+        <Grid Grid.Row="2" Margin="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="190" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ContentControl Grid.Row="0" Grid.Column="0" prism:RegionManager.RegionName="TaskListRegion" />
+            <GridSplitter Grid.Row="0" Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <ContentControl Grid.Row="0" Grid.Column="2" prism:RegionManager.RegionName="TaskDetailRegion" />
+            <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" />
+            <v:LogPanel Grid.Row="2" Grid.ColumnSpan="3" />
+        </Grid>
+
+        <StatusBar Grid.Row="3">
+            <StatusBarItem DockPanel.Dock="Right">
+                <TextBlock Text="{Binding ProjectText}" />
+            </StatusBarItem>
+            <StatusBarItem>
+                <ItemsControl ItemsSource="{Binding Devices}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,14,0" ToolTip="{Binding Error}">
+                                <Ellipse Width="10" Height="10" Margin="0,0,4,0">
+                                    <Ellipse.Style>
+                                        <Style TargetType="Ellipse">
+                                            <Setter Property="Fill" Value="#C8CCD1" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding State}" Value="Connected">
+                                                    <Setter Property="Fill" Value="#29A35A" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="Connecting">
+                                                    <Setter Property="Fill" Value="#E0A030" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="Disconnecting">
+                                                    <Setter Property="Fill" Value="#E0A030" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding State}" Value="Faulted">
+                                                    <Setter Property="Fill" Value="#B94A48" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Ellipse.Style>
+                                </Ellipse>
+                                <TextBlock Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

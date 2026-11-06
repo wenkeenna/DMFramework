@@ -1,0 +1,140 @@
+﻿<!-- Editors/GlueEditorView.xaml -->
+<UserControl x:Class="DM.Process.Editors.GlueEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True" IsEnabled="{Binding IsEditable}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DM.UI;component/Themes/Themes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="6">
+            <TextBlock Foreground="#B23A48" TextWrapping="Wrap" Text="{Binding Error}" />
+
+            <GroupBox Header="目标（数字，或 @Root.Child 引用参数）">
+                <WrapPanel>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="模式">
+                        <ComboBox ItemsSource="{Binding Modes}" SelectedItem="{Binding Data.Mode}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="划线方向">
+                        <ComboBox ItemsSource="{Binding LineDirections}" SelectedItem="{Binding Data.Direction}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="起点 X">
+                        <TextBox Text="{Binding Data.StartX, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="起点 Y">
+                        <TextBox Text="{Binding Data.StartY, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="终点 X（X 方向划线）">
+                        <TextBox Text="{Binding Data.EndX, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="终点 Y（Y 方向划线）">
+                        <TextBox Text="{Binding Data.EndY, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                </WrapPanel>
+            </GroupBox>
+
+            <GroupBox Header="轴与速度">
+                <WrapPanel>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="X 轴">
+                        <ComboBox IsEditable="True" ItemsSource="{Binding AxisNames}" Text="{Binding Data.Settings.AxisX, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="Y 轴">
+                        <ComboBox IsEditable="True" ItemsSource="{Binding AxisNames}" Text="{Binding Data.Settings.AxisY, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="Z 轴">
+                        <ComboBox IsEditable="True" ItemsSource="{Binding AxisNames}" Text="{Binding Data.Settings.AxisZ, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="移动速度">
+                        <TextBox Text="{Binding Data.Settings.MoveSpeed, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="划线速度">
+                        <TextBox Text="{Binding Data.Settings.LineSpeed, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="点胶时间 ms">
+                        <TextBox Text="{Binding Data.Settings.GlueTimeMs, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="Z 点胶位">
+                        <TextBox Text="{Binding Data.Settings.ZPos, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="Z 安全偏移">
+                        <TextBox Text="{Binding Data.Settings.ZSafeOffset, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                </WrapPanel>
+            </GroupBox>
+
+            <GroupBox Header="气缸与 IO">
+                <WrapPanel>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="气缸输出">
+                        <ComboBox IsEditable="True" ItemsSource="{Binding OutputNames}" Text="{Binding Data.Settings.CylinderOutput, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="点胶输出">
+                        <ComboBox IsEditable="True" ItemsSource="{Binding OutputNames}" Text="{Binding Data.Settings.GlueOutput, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="伸出到位输入">
+                        <ComboBox IsEditable="True" ItemsSource="{Binding InputNames}" Text="{Binding Data.Settings.CylinderForwardInput, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="缩回到位输入">
+                        <ComboBox IsEditable="True" ItemsSource="{Binding InputNames}" Text="{Binding Data.Settings.CylinderBackInput, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="气缸超时 ms">
+                        <TextBox Text="{Binding Data.Settings.CylinderTimeoutMs, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <CheckBox VerticalAlignment="Bottom" Margin="0,0,0,10" Content="完成后保持气缸伸出" IsChecked="{Binding Data.Settings.KeepCylinderExtended}" />
+                </WrapPanel>
+            </GroupBox>
+
+            <GroupBox Header="Z 校准（偏移 = 新值 − 基准值，取自参数）">
+                <WrapPanel>
+                    <CheckBox VerticalAlignment="Bottom" Margin="0,0,16,10" Content="启用" IsChecked="{Binding Data.Settings.CalibrationEnabled}" />
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="根键">
+                        <TextBox Text="{Binding Data.Settings.CalibRoot, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="基准值键">
+                        <TextBox Text="{Binding Data.Settings.CalibBaseKey, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="新值键">
+                        <TextBox Text="{Binding Data.Settings.CalibNewKey, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                </WrapPanel>
+            </GroupBox>
+
+            <GroupBox Header="点胶前接触探测（沿 Z，力通道 GlueZ）">
+                <WrapPanel>
+                    <CheckBox VerticalAlignment="Bottom" Margin="0,0,16,10" Content="启用" IsChecked="{Binding Data.Settings.Touch.IsEnabled}" />
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="方向">
+                        <ComboBox ItemsSource="{Binding ProbeDirections}" SelectedItem="{Binding Data.Settings.Touch.Direction}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="最大行程">
+                        <TextBox Text="{Binding Data.Settings.Touch.MaxTravel, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="步距">
+                        <TextBox Text="{Binding Data.Settings.Touch.StepDistance, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="速度">
+                        <TextBox Text="{Binding Data.Settings.Touch.StepVelocity, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="稳定 ms">
+                        <TextBox Text="{Binding Data.Settings.Touch.SettleMs, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="触发力">
+                        <TextBox Text="{Binding Data.Settings.Touch.TriggerForce, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="回退方式">
+                        <ComboBox ItemsSource="{Binding RetreatModes}" SelectedItem="{Binding Data.Settings.Touch.Retreat}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="回退值（相对距离/绝对位置）">
+                        <TextBox Text="{Binding Data.Settings.Touch.RetreatValue, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                    <HeaderedContentControl Style="{StaticResource Field}" Header="回退速度">
+                        <TextBox Text="{Binding Data.Settings.Touch.RetreatVelocity, UpdateSourceTrigger=PropertyChanged}" />
+                    </HeaderedContentControl>
+                </WrapPanel>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

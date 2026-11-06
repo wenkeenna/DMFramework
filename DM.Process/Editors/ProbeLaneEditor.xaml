@@ -1,0 +1,59 @@
+﻿<!--  Editors/ProbeLaneEditor.xaml：一个通道的参数，左右通道复用  -->
+<UserControl
+    x:Class="DM.Process.Editors.ProbeLaneEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Name="Root">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DM.UI;component/Themes/Themes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <GroupBox Header="{Binding Lane.Name, ElementName=Root}">
+        <WrapPanel DataContext="{Binding Lane, ElementName=Root}">
+            <CheckBox
+                Margin="0,0,16,10"
+                VerticalAlignment="Bottom"
+                Content="启用"
+                IsChecked="{Binding Enabled}" />
+            <HeaderedContentControl Header="轴" Style="{StaticResource Field}">
+                <ComboBox
+                    IsEditable="True"
+                    ItemsSource="{Binding AxisNames, ElementName=Root}"
+                    Text="{Binding Axis, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="力通道" Style="{StaticResource Field}">
+                <ComboBox
+                    IsEditable="True"
+                    ItemsSource="{Binding Channels, ElementName=Root}"
+                    Text="{Binding Channel, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="方向" Style="{StaticResource Field}">
+                <ComboBox x:Name="DirBox" SelectedItem="{Binding Direction}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="最大行程" Style="{StaticResource Field}">
+                <TextBox Text="{Binding MaxTravel, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="步距" Style="{StaticResource Field}">
+                <TextBox Text="{Binding StepDistance, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="速度" Style="{StaticResource Field}">
+                <TextBox Text="{Binding StepVelocity, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="稳定 ms" Style="{StaticResource Field}">
+                <TextBox Text="{Binding SettleMs, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="触发力" Style="{StaticResource Field}">
+                <TextBox Text="{Binding TriggerForce, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="触发后回退" Style="{StaticResource Field}">
+                <TextBox Text="{Binding RetreatValue, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Header="回退速度" Style="{StaticResource Field}">
+                <TextBox Text="{Binding RetreatVelocity, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+        </WrapPanel>
+    </GroupBox>
+</UserControl>

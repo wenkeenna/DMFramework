@@ -1,0 +1,54 @@
+﻿<!-- MultiAxisEditorView.xaml -->
+<UserControl x:Class="DM.Motion.TaskEditors.MultiAxisEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:ed="clr-namespace:DM.Motion.TaskEditors"
+    xmlns:ui="clr-namespace:DM.UI.Controls;assembly=DM.UI"
+    prism:ViewModelLocator.AutoWireViewModel="True" IsEnabled="{Binding IsEditable}">
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" MinHeight="110" />
+            <RowDefinition Height="130" />
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Right" Margin="4,0,0,0">
+                <Button Width="50" Content="添加" Command="{Binding AddCommand}" />
+                <Button Width="50" Margin="0,4,0,0" Content="删除" Command="{Binding RemoveCommand}" />
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding Data.Items}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False"
+                      CanUserAddRows="False" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="启用" Binding="{Binding Enabled}" />
+                    <DataGridTextColumn Header="优先级" Binding="{Binding Priority}" />
+                    <DataGridTemplateColumn Header="轴" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Axis}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox IsEditable="True" Text="{Binding Axis, UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{Binding DataContext.AxisNames, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridCheckBoxColumn Header="相对" Binding="{Binding IsRelative}" />
+                    <DataGridTextColumn Header="位置" Binding="{Binding Position}" />
+                    <DataGridTextColumn Header="速度(0=默认)" Binding="{Binding Velocity}" />
+                    <DataGridCheckBoxColumn Header="绑定" Binding="{Binding UseBinding}" />
+                    <DataGridTextColumn Header="绑定键" Binding="{Binding BindKey}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <TextBlock Grid.Row="1" Foreground="#B23A48" TextWrapping="Wrap" Text="{Binding Error}" />
+        <UniformGrid Grid.Row="2" Rows="1" Columns="2">
+            <ed:IoStepListEditor Title="选中动作的前置 IO（同组先于运动）" Steps="{Binding SelectedItem.Before}" Names="{Binding IoNames}" />
+            <ed:IoStepListEditor Title="选中动作的后置 IO（同组晚于运动）" Steps="{Binding SelectedItem.After}" Names="{Binding IoNames}" />
+        </UniformGrid>
+        <ui:ConvertPreviewPanel Grid.Row="3" />
+    </Grid>
+</UserControl>

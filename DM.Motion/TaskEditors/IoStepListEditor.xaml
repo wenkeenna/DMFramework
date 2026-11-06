@@ -1,0 +1,35 @@
+﻿<!-- IoStepListEditor.xaml：可复用的 IO 步骤表格 -->
+<UserControl x:Class="DM.Motion.TaskEditors.IoStepListEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Root">
+    <GroupBox Header="{Binding Title, ElementName=Root}">
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Right" Margin="4,0,0,0">
+                <Button Width="26" Content="＋" Click="Add_Click" ToolTip="添加步骤" />
+                <Button Width="26" Margin="0,4,0,0" Content="－" Click="Remove_Click" ToolTip="删除选中步骤" />
+            </StackPanel>
+            <DataGrid x:Name="StepGrid" ItemsSource="{Binding Steps, ElementName=Root}" AutoGenerateColumns="False"
+                      CanUserAddRows="False" SelectionMode="Single" MinHeight="70">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="启用" Binding="{Binding Enabled}" />
+                    <DataGridComboBoxColumn x:Name="KindColumn" Header="动作" SelectedItemBinding="{Binding Kind}" />
+                    <DataGridTemplateColumn Header="IO 名称" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox IsEditable="True" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                          ItemsSource="{Binding Names, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridCheckBoxColumn Header="ON" Binding="{Binding Value}" />
+                    <DataGridTextColumn Header="毫秒" Binding="{Binding Ms}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </GroupBox>
+</UserControl>

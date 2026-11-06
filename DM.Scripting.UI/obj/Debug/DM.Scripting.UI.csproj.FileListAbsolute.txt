@@ -1,0 +1,8 @@
+D:\项目\DMFramework\DM.Scripting.UI\obj\Debug\DM.Scripting.UI.csproj.AssemblyReference.cache
+D:\项目\DMFramework\DM.Scripting.UI\obj\Debug\Views\ScriptEditorView.baml
+D:\项目\DMFramework\DM.Scripting.UI\obj\Debug\Views\ScriptEditorView.g.cs
+D:\项目\DMFramework\DM.Scripting.UI\obj\Debug\DM.Scripting.UI_MarkupCompile.cache
+D:\项目\DMFramework\DM.Scripting.UI\obj\Debug\DM.Scripting.UI.g.resources
+D:\项目\DMFramework\DM.Scripting.UI\obj\Debug\DM.Scripting.UI.Properties.Resources.resources
+D:\项目\DMFramework\DM.Scripting.UI\obj\Debug\DM.Scripting.UI.csproj.GenerateResource.cache
+D:\项目\DMFramework\DM.Scripting.UI\obj\Debug\DM.Scripting.UI.csproj.CoreCompileInputs.cache

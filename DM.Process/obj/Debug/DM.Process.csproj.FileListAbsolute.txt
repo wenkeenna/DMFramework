@@ -1,0 +1,9 @@
+D:\项目\DMFramework\DM.Process\obj\Debug\DM.Process.csproj.AssemblyReference.cache
+D:\项目\DMFramework\DM.Process\obj\Debug\Editors\GlueEditorView.baml
+D:\项目\DMFramework\DM.Process\obj\Debug\Editors\ProbeLaneEditor.baml
+D:\项目\DMFramework\DM.Process\obj\Debug\Editors\GlueEditorView.g.cs
+D:\项目\DMFramework\DM.Process\obj\Debug\Editors\ProbeLaneEditor.g.cs
+D:\项目\DMFramework\DM.Process\obj\Debug\Editors\TouchProbeEditorView.g.cs
+D:\项目\DMFramework\DM.Process\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\项目\DMFramework\DM.Process\obj\Debug\DM.Process_MarkupCompile.cache
+D:\项目\DMFramework\DM.Process\obj\Debug\DM.Process_MarkupCompile.lref

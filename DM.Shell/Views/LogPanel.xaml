@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="DM.Shell.Views.LogPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="4,2">
+            <TextBlock Margin="0,0,12,0" VerticalAlignment="Center" FontWeight="Bold" Text="日志" />
+            <TextBlock VerticalAlignment="Center" Text="级别 ≥ " />
+            <ComboBox Width="80" Margin="4,0,12,0" ItemsSource="{Binding Levels}" SelectedItem="{Binding MinLevel}" />
+            <CheckBox Margin="0,0,12,0" VerticalAlignment="Center" Content="自动滚动" IsChecked="{Binding AutoScroll}" />
+            <Button Padding="12,0" Content="清空" Command="{Binding ClearCommand}" />
+        </StackPanel>
+        <ListView x:Name="LogList" ItemsSource="{Binding View}" VirtualizingPanel.IsVirtualizing="True" FontFamily="Consolas">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="ToolTip" Value="{Binding Detail}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Level}" Value="Error">
+                            <Setter Property="Foreground" Value="#B23A48" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Level}" Value="Warn">
+                            <Setter Property="Foreground" Value="#B8860B" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="时间" Width="170" DisplayMemberBinding="{Binding TimeText}" />
+                    <GridViewColumn Header="级别" Width="60" DisplayMemberBinding="{Binding Level}" />
+                    <GridViewColumn Header="来源" Width="150" DisplayMemberBinding="{Binding Source}" />
+                    <GridViewColumn Header="内容" Width="1000" DisplayMemberBinding="{Binding Message}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</UserControl>

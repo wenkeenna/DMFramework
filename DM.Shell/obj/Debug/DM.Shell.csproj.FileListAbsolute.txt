@@ -1,0 +1,10 @@
+D:\项目\DMFramework\DM.Shell\obj\Debug\DM.Shell.csproj.AssemblyReference.cache
+D:\项目\DMFramework\DM.Shell\obj\Debug\Views\AuditViewDialog.baml
+D:\项目\DMFramework\DM.Shell\obj\Debug\Views\LogPanel.baml
+D:\项目\DMFramework\DM.Shell\obj\Debug\Views\AuditViewDialog.g.cs
+D:\项目\DMFramework\DM.Shell\obj\Debug\Views\LogPanel.g.cs
+D:\项目\DMFramework\DM.Shell\obj\Debug\Views\MainWindow.g.cs
+D:\项目\DMFramework\DM.Shell\obj\Debug\App.g.cs
+D:\项目\DMFramework\DM.Shell\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\项目\DMFramework\DM.Shell\obj\Debug\DM.Shell_MarkupCompile.cache
+D:\项目\DMFramework\DM.Shell\obj\Debug\DM.Shell_MarkupCompile.lref

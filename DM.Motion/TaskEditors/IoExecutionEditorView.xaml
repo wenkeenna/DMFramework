@@ -1,0 +1,19 @@
+﻿<!-- IoExecutionEditorView.xaml -->
+<UserControl x:Class="DM.Motion.TaskEditors.IoExecutionEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:ed="clr-namespace:DM.Motion.TaskEditors"
+    xmlns:ui="clr-namespace:DM.UI.Controls;assembly=DM.UI"
+    prism:ViewModelLocator.AutoWireViewModel="True" IsEnabled="{Binding IsEditable}">
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="130" />
+        </Grid.RowDefinitions>
+        <TextBlock Foreground="#B23A48" TextWrapping="Wrap" Text="{Binding Error}" />
+        <ed:IoStepListEditor Grid.Row="1" Title="IO 步骤（按顺序执行）" Steps="{Binding Data.Steps}" Names="{Binding IoNames}" />
+        <ui:ConvertPreviewPanel Grid.Row="2" />
+    </Grid>
+</UserControl>

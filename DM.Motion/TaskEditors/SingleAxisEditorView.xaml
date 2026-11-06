@@ -1,0 +1,41 @@
+﻿<!-- SingleAxisEditorView.xaml -->
+<UserControl x:Class="DM.Motion.TaskEditors.SingleAxisEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:ed="clr-namespace:DM.Motion.TaskEditors"
+    xmlns:ui="clr-namespace:DM.UI.Controls;assembly=DM.UI"
+    prism:ViewModelLocator.AutoWireViewModel="True" IsEnabled="{Binding IsEditable}">
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="130" />
+        </Grid.RowDefinitions>
+        <WrapPanel>
+            <HeaderedContentControl Style="{StaticResource Field}" Header="轴">
+                <ComboBox IsEditable="True" ItemsSource="{Binding AxisNames}" Text="{Binding Data.Axis, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Style="{StaticResource Field}" Header="动作">
+                <ComboBox ItemsSource="{Binding Modes}" SelectedItem="{Binding Data.Mode}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Style="{StaticResource Field}" Header="位置（回零忽略）">
+                <TextBox Text="{Binding Data.Position, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <HeaderedContentControl Style="{StaticResource Field}" Header="速度（0=默认）">
+                <TextBox Text="{Binding Data.Velocity, UpdateSourceTrigger=PropertyChanged}" />
+            </HeaderedContentControl>
+            <StackPanel Width="180" Margin="0,0,12,6">
+                <CheckBox Content="位置来自参数" IsChecked="{Binding Data.UseBinding}" />
+                <TextBox Text="{Binding Data.BindKey, UpdateSourceTrigger=PropertyChanged}" ToolTip="Root.Child，如 Pos.PickZ" />
+            </StackPanel>
+        </WrapPanel>
+        <TextBlock Grid.Row="1" Foreground="#B23A48" TextWrapping="Wrap" Text="{Binding Error}" />
+        <UniformGrid Grid.Row="2" Rows="1" Columns="2">
+            <ed:IoStepListEditor Title="运动前 IO" Steps="{Binding Data.Before}" Names="{Binding IoNames}" />
+            <ed:IoStepListEditor Title="运动后 IO" Steps="{Binding Data.After}" Names="{Binding IoNames}" />
+        </UniformGrid>
+        <ui:ConvertPreviewPanel Grid.Row="3" />
+    </Grid>
+</UserControl>

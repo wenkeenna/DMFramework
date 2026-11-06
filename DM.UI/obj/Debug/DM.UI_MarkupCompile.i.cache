@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-8-100154366
+9-1298889389
 
 81272263929
 21871838426
-Controls\ConvertPreviewPanel.xaml;Themes\Styles\Buttons.xaml;Themes\Styles\Colors.xaml;Themes\Styles\DataGrid.xaml;Themes\Styles\Expanders.xaml;Themes\Styles\Fonts.xaml;Themes\Styles\Icons.xaml;Themes\Themes.xaml;
+Controls\ConvertPreviewPanel.xaml;Themes\Styles\Buttons.xaml;Themes\Styles\Colors.xaml;Themes\Styles\DataGrid.xaml;Themes\Styles\Expanders.xaml;Themes\Styles\Fields.xaml;Themes\Styles\Fonts.xaml;Themes\Styles\Icons.xaml;Themes\Themes.xaml;
 
 False
 

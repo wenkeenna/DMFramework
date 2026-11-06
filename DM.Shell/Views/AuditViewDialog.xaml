@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="DM.Shell.Views.AuditViewDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/">
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen" />
+            <Setter Property="Width" Value="1180" />
+            <Setter Property="Height" Value="700" />
+            <Setter Property="ShowInTaskbar" Value="False" />
+        </Style>
+    </prism:Dialog.WindowStyle>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <WrapPanel Margin="0,0,0,6">
+            <TextBlock VerticalAlignment="Center" Text="从 " />
+            <DatePicker Width="110" SelectedDate="{Binding FromDate}" />
+            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Text="到 " />
+            <DatePicker Width="110" SelectedDate="{Binding ToDate}" />
+            <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="分类 " />
+            <ComboBox Width="100" ItemsSource="{Binding Categories}" DisplayMemberPath="Name" SelectedItem="{Binding Category}" />
+            <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="用户 " />
+            <TextBox Width="90" Text="{Binding UserFilter}" />
+            <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="关键字 " />
+            <TextBox Width="160" Text="{Binding Text}" ToolTip="对象、动作、旧值、新值、说明中模糊匹配" />
+            <Button Margin="12,0,0,0" Padding="14,0" Content="查询" IsDefault="True" Command="{Binding SearchCommand}" />
+            <Button Margin="6,0,0,0" Padding="14,0" Content="校验完整性" Command="{Binding VerifyCommand}" ToolTip="重算哈希链，检查记录是否被删除或篡改" />
+        </WrapPanel>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Rows}" SelectedItem="{Binding Selected}" AutoGenerateColumns="False"
+                  IsReadOnly="True" SelectionMode="Single" EnableRowVirtualization="True">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Result}" Value="Failed">
+                            <Setter Property="Foreground" Value="#B23A48" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Result}" Value="Denied">
+                            <Setter Property="Foreground" Value="#B8860B" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="时间" Binding="{Binding TimeText}" Width="140" />
+                <DataGridTextColumn Header="用户" Binding="{Binding User}" Width="80" />
+                <DataGridTextColumn Header="角色" Binding="{Binding Role}" Width="90" />
+                <DataGridTextColumn Header="分类" Binding="{Binding Category}" Width="80" />
+                <DataGridTextColumn Header="动作" Binding="{Binding Action}" Width="110" />
+                <DataGridTextColumn Header="对象" Binding="{Binding Target}" Width="160" />
+                <DataGridTextColumn Header="结果" Binding="{Binding Result}" Width="70" />
+                <DataGridTextColumn Header="旧值" Binding="{Binding Old}" Width="140" />
+                <DataGridTextColumn Header="新值" Binding="{Binding New}" Width="140" />
+                <DataGridTextColumn Header="说明" Binding="{Binding Detail}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBox Grid.Row="2" Margin="0,6,0,0" IsReadOnly="True" TextWrapping="Wrap" FontFamily="Consolas"
+                 VerticalScrollBarVisibility="Auto" Text="{Binding DetailText, Mode=OneWay}" />
+
+        <DockPanel Grid.Row="3" Margin="0,6,0,0">
+            <Button DockPanel.Dock="Right" Width="80" Content="关闭" IsCancel="True" Command="{Binding CloseCommand}" />
+            <TextBlock VerticalAlignment="Center" Text="{Binding Status}" />
+        </DockPanel>
+    </Grid>
+</UserControl>
