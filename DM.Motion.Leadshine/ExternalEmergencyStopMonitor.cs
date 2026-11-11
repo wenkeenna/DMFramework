@@ -4,6 +4,7 @@ using DM.Core.Devices;
 using DM.Core.Events;
 using DM.Core.Logging;
 using DM.Motion.Services;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;

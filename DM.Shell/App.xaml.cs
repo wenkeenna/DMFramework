@@ -137,7 +137,7 @@ namespace DM.Shell
         // ───── 公共资源：Fields.xaml 里有编辑界面用到的 Field 样式，各模块的编辑界面都依赖它 ─────
         private void EnsureSharedResources()
         {
-            const string fields = "pack://application:,,,/DM.UI;component/Themes/Fields.xaml";
+            const string fields = "pack://application:,,,/DM.UI;component/Themes/Styles/Fields.xaml";
             if (Resources.MergedDictionaries.Any(d => d.Source != null && d.Source.OriginalString == fields)) return;
             Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri(fields, UriKind.Absolute) });
         }
@@ -161,10 +161,21 @@ namespace DM.Shell
 
         private void SafeLog(string message, Exception ex)
         {
-            try { Container.Resolve<IAppLogger>().Error(message, ex); }
-            catch (Exception) { System.Diagnostics.Debug.WriteLine(message + "：" + ex); }
-            try { Container.Resolve<IAuditService>().Record(AuditCategory.System, "UnhandledException", null, result: AuditResult.Failed, detail: ex == null ? message : message + "：" + ex.Message); }
-            catch (Exception) { }
+            try 
+            { 
+                Container.Resolve<IAppLogger>().Error(message, ex); 
+            }
+            catch (Exception) 
+            { 
+                System.Diagnostics.Debug.WriteLine(message + "：" + ex); 
+            }
+            try 
+            { 
+                Container.Resolve<IAuditService>().Record(AuditCategory.System, "UnhandledException", null, result: AuditResult.Failed, detail: ex == null ? message : message + "：" + ex.Message); 
+            }
+            catch (Exception) 
+            { 
+            }
         }
     }
 }

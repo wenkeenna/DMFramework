@@ -1,6 +1,7 @@
 ﻿using DM.Core.TaskList;
 using DM.Motion.Services;
 using DM.Motion.Tasks;
+using DM.UI.TaskEditing;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;

@@ -31,6 +31,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DryIoc, Version=4.7.7.0, Culture=neutral, PublicKeyToken=dfbf2bd50fcf7768, processorArchitecture=MSIL">
       <HintPath>..\packages\DryIoc.dll.4.7.7\lib\net45\DryIoc.dll</HintPath>
@@ -119,6 +137,10 @@
     <ProjectReference Include="..\DM.Motion\DM.Motion.csproj">
       <Project>{D1480B3D-34EE-4FAD-8505-57C8DF7DFF09}</Project>
       <Name>DM.Motion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DM.Scripting\DM.Scripting.csproj">
+      <Project>{30AC30F0-D41F-4633-BF6E-EB36E48ADF29}</Project>
+      <Name>DM.Scripting</Name>
     </ProjectReference>
     <ProjectReference Include="..\DM.UI\DM.UI.csproj">
       <Project>{f8e6927b-bb1e-4455-aeb5-3e8717ece028}</Project>

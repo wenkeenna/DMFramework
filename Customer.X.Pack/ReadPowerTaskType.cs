@@ -1,10 +1,8 @@
 ﻿using DM.Core.Common;
 using DM.Core.Data;
 using DM.Core.TaskList;
-using DM.Engine.TaskList;
-using DM.Scripting;
 using DM.Scripting.Commands;
-using Prism.Mvvm;
+using DM.Scripting;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,24 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DM.Engine.TaskList;
+using Prism.Mvvm;
 
 namespace Customer.X.Pack
 {
     public sealed class ReadPowerData : BindableBase
     {
         private string _channel = "CH1", _key = "Power.Ch1";
-        public string Channel 
-        { 
-            get { return _channel; } 
-            set { SetProperty(ref _channel, value ?? ""); 
-            } 
-        }
-        public string ResultKey 
-        { 
-            get { return _key; } 
-            set { SetProperty(ref _key, value ?? ""); 
-            } 
-        }
+        public string Channel { get { return _channel; } set { SetProperty(ref _channel, value ?? ""); } }
+        public string ResultKey { get { return _key; } set { SetProperty(ref _key, value ?? ""); } }
     }
 
     /// <summary>
@@ -64,5 +54,4 @@ namespace Customer.X.Pack
 
         protected override string Describe(ReadPowerData d) { return d.Channel + " → " + d.ResultKey; }
     }
-
 }

@@ -21,7 +21,7 @@ namespace DM.Core.Common
         public string Config => Path.Combine(Root, "Config");
         public string Logs => Path.Combine(Root, "Logs");
         public string Projects => Path.Combine(Root, "Projects");
-        public string AuditDb => Path.Combine(Logs, "audit.db");
+        public string AuditDb => Path.Combine(Config, "audit.db");
         public string IdentityDb => Path.Combine(Config, "accounts.db");
 
         public void EnsureDirectories()

@@ -134,10 +134,10 @@ namespace DM.Shell.ViewModels
 
         // 界面选的是本地日期，库里是 UTC：起始取当天 0 点，结束取当天最后一刻
         private static DateTime? StartUtc(DateTime? d)
-        { return d.HasValue ? DateTime.SpecifiedKind(d.Value.Date, DateTimeKind.Local).ToUniversalTime() : (DateTime?)null; }
+        { return d.HasValue ? DateTime.SpecifyKind(d.Value.Date, DateTimeKind.Local).ToUniversalTime() : (DateTime?)null; }
 
         private static DateTime? EndUtc(DateTime? d)
-        { return d.HasValue ? DateTime.SpecifiedKind(d.Value.Date.AddDays(1).AddTicks(-1), DateTimeKind.Local).ToUniversalTime() : (DateTime?)null; }
+        { return d.HasValue ? DateTime.SpecifyKind(d.Value.Date.AddDays(1).AddTicks(-1), DateTimeKind.Local).ToUniversalTime() : (DateTime?)null; }
 
         public bool CanCloseDialog() { return true; }
         public void OnDialogClosed() { }

@@ -1,4 +1,5 @@
 ﻿using DM.Engine.Hosting;
+using DM.Scripting.Commands;
 using Prism.Ioc;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,4 @@ namespace Customer.X.Pack
         protected override void Attach(ModuleScope s)
         { s.TaskType<ReadPowerTaskType>().Command<SetPmCommand>().Command<ReadPmCommand>(); }
     }
-
 }

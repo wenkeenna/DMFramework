@@ -3,6 +3,7 @@ using DM.Motion.Commands;
 using DM.Motion.Services;
 using DM.Motion.TaskEditors;
 using DM.Motion.Tasks;
+using DM.Scripting.Commands;
 using Prism.Ioc;
 using Prism.Modularity;
 using System;

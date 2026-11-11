@@ -3,6 +3,7 @@ using DM.Motion.Services;
 using DM.Process.Models;
 using DM.Process.Services;
 using DM.Process.Tasks;
+using DM.UI.TaskEditing;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;

@@ -33,7 +33,7 @@ namespace DM.Scripting.UI.ViewModels
 
         public ScriptEditorViewModel(IScriptCommandRegistry registry, ScriptCompletion completion)
         {
-            Registry = registry; Completion = completion;
+            Registry = (ScriptCommandRegistry)registry; Completion = completion;
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(400) };
             _timer.Tick += (s, e) => { _timer.Stop(); Check(); Commit(); };
 

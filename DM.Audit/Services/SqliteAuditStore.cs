@@ -19,7 +19,10 @@ namespace DM.Audit.Services
         private const string Cols = "id,time_utc,user_id,user_name,role,machine,project,category,action,target,old_value,new_value,result,detail,trace_id,prev_hash,hash";
         private readonly string _cs;
 
-        static SqliteAuditStore() { SQLitePCL.Batteries.Init(); }
+        static SqliteAuditStore() 
+        { 
+            SQLitePCL.Batteries.Init(); 
+        }
 
         public SqliteAuditStore(string dbPath)
         {

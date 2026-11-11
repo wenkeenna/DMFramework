@@ -26,9 +26,13 @@ namespace DM.Engine.Hosting
     /// 功能模块基类。规则只有一条：Register 里只注册类型，不解析任何东西。
     /// 登记扩展点（Attach）被推迟到所有模块都注册完之后，由宿主统一执行，所以模块的加载顺序不影响正确性。
     /// </summary>
-    public abstract class ModuleBase : IModule
+    public abstract class ModuleBase : IModule //所有模块的基类
     {
-        public void RegisterTypes(IContainerRegistry registry) { Register(registry); }
+     
+        public void RegisterTypes(IContainerRegistry registry) 
+        { 
+            Register(registry); 
+        }
 
         public void OnInitialized(IContainerProvider provider)
         {
@@ -51,12 +55,23 @@ namespace DM.Engine.Hosting
         public List<KeyValuePair<string, Exception>> RunAll()
         {
             List<KeyValuePair<string, Action>> list;
-            lock (_g) { list = _items.ToList(); _items.Clear(); }
+
+            lock (_g) 
+            { 
+                list = _items.ToList(); 
+                _items.Clear(); 
+            }
             var failures = new List<KeyValuePair<string, Exception>>();
             foreach (var it in list)
             {
-                try { it.Value(); }
-                catch (Exception ex) { failures.Add(new KeyValuePair<string, Exception>(it.Key, ex)); }
+                try 
+                { 
+                    it.Value(); 
+                }
+                catch (Exception ex) 
+                { 
+                    failures.Add(new KeyValuePair<string, Exception>(it.Key, ex));
+                }
             }
             return failures;
         }
@@ -66,24 +81,46 @@ namespace DM.Engine.Hosting
     public sealed class ModuleScope
     {
         private readonly IContainerProvider _p;
-        public ModuleScope(IContainerProvider p) { _p = p; }
+        public ModuleScope(IContainerProvider p) 
+        { 
+            _p = p; 
+        }
 
-        public T Resolve<T>() { return _p.Resolve<T>(); }
+        public T Resolve<T>() 
+        { 
+            return _p.Resolve<T>(); 
+        }
 
         public ModuleScope Device<T>() where T : IDeviceSession
-        { _p.Resolve<IDeviceHub>().Register(_p.Resolve<T>()); return this; }
+        { 
+            _p.Resolve<IDeviceHub>().Register(_p.Resolve<T>()); 
+            return this; 
+        }
 
         public ModuleScope ProjectPart<T>() where T : IProjectAware
-        { _p.Resolve<IProjectAwareRegistry>().Register(_p.Resolve<T>()); return this; }
+        { 
+            _p.Resolve<IProjectAwareRegistry>().Register(_p.Resolve<T>()); 
+            return this; 
+        }
 
         public ModuleScope TaskType<T>() where T : ITaskType
-        { _p.Resolve<ITaskTypeRegistry>().Register(_p.Resolve<T>()); return this; }
+        { 
+            _p.Resolve<ITaskTypeRegistry>().Register(_p.Resolve<T>()); 
+            return this; 
+        }
 
         public ModuleScope Seeder<T>() where T : IParameterSeeder
-        { _p.Resolve<IParameterSeederRegistry>().Register(_p.Resolve<T>()); return this; }
+        { 
+            _p.Resolve<IParameterSeederRegistry>().Register(_p.Resolve<T>()); 
+            return this; 
+        }
 
         /// <summary>创建即生效的对象（如订阅事件的服务）。</summary>
-        public ModuleScope Eager<T>() where T : class { _p.Resolve<T>(); return this; }
+        public ModuleScope Eager<T>() where T : class 
+        { 
+            _p.Resolve<T>(); 
+            return this; 
+        }
     }
 
     /// <summary>退出流程：停任务 → 关闭项目（含保存）→ 限时断开设备 → 强制结束进程。全程在线程池，Interlocked 防重入。</summary>

@@ -1,34 +1,24 @@
-﻿<!--  ReadPowerEditorView.xaml  -->
-<UserControl
-    x:Class="Customer.X.Pack.ReadPowerEditorView"
+﻿<UserControl x:Class="Customer.X.Pack.ReadPowerEditorView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:ui="clr-namespace:DM.UI.Controls;assembly=DM.UI"
-    prism:ViewModelLocator.AutoWireViewModel="True"
-    IsEnabled="{Binding IsEditable}">
-    <Grid Margin="6">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="130" />
-        </Grid.RowDefinitions>
-        <WrapPanel>
-            <HeaderedContentControl Header="通道" Style="{StaticResource Field}">
-                <ComboBox ItemsSource="{Binding Channels}" SelectedItem="{Binding Data.Channel}" />
-            </HeaderedContentControl>
-            <HeaderedContentControl
-                Width="200"
-                Header="结果键（Root.Child）"
-                Style="{StaticResource Field}">
-                <TextBox Text="{Binding Data.ResultKey, UpdateSourceTrigger=PropertyChanged}" />
-            </HeaderedContentControl>
-        </WrapPanel>
-        <TextBlock
-            Grid.Row="1"
-            Foreground="#B23A48"
-            Text="{Binding Error}"
-            TextWrapping="Wrap" />
-        <ui:ConvertPreviewPanel Grid.Row="2" />
-    </Grid>
+    prism:ViewModelLocator.AutoWireViewModel="True" IsEnabled="{Binding IsEditable}">
+	<Grid Margin="6">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="130" />
+		</Grid.RowDefinitions>
+		<WrapPanel>
+			<HeaderedContentControl Style="{StaticResource Field}" Header="通道">
+				<ComboBox ItemsSource="{Binding Channels}" SelectedItem="{Binding Data.Channel}" />
+			</HeaderedContentControl>
+			<HeaderedContentControl Style="{StaticResource Field}" Header="结果键（Root.Child）" Width="200">
+				<TextBox Text="{Binding Data.ResultKey, UpdateSourceTrigger=PropertyChanged}" />
+			</HeaderedContentControl>
+		</WrapPanel>
+		<TextBlock Grid.Row="1" Foreground="#B23A48" TextWrapping="Wrap" Text="{Binding Error}" />
+		<ui:ConvertPreviewPanel Grid.Row="2" />
+	</Grid>
 </UserControl>

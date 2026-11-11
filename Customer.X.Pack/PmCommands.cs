@@ -56,5 +56,4 @@ namespace Customer.X.Pack
             ctx.Log("READ_PM " + ch + " = " + v.ToString("F3", CultureInfo.InvariantCulture) + " dBm → " + key);
         }
     }
-
 }

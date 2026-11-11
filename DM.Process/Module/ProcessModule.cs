@@ -2,6 +2,7 @@
 using DM.Process.Editors;
 using DM.Process.Services;
 using DM.Process.Tasks;
+using DM.Scripting.Commands;
 using Prism.Ioc;
 using Prism.Modularity;
 using System;

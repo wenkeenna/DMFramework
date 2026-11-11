@@ -1,4 +1,4 @@
-﻿<Application x:Class="Customer.X.Pack.App"
+﻿<!--<Application x:Class="Customer.X.Pack.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Customer.X.Pack"
@@ -6,4 +6,16 @@
     <Application.Resources>
          
     </Application.Resources>
-</Application>
+</Application>-->
+<shell:DmApp x:Class="Customer.X.Pack.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:shell="clr-namespace:DM.Shell;assembly=DM.Shell">
+    <shell:DmApp.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DM.UI;component/Themes/Themes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </shell:DmApp.Resources>
+</shell:DmApp>
