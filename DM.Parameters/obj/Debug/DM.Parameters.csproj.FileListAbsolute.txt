@@ -1,0 +1,1 @@
+D:\项目\DMFramework\DM.Parameters\obj\Debug\DM.Parameters.csproj.AssemblyReference.cache

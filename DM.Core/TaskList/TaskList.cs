@@ -62,6 +62,18 @@ namespace DM.Core.TaskList
         void Convert();                             // 按 ITaskConvertible 转换成目标类型
     }
 
+    /// <summary>
+    /// 任务编辑界面的 ViewModel 实现它。弹窗宿主创建界面后调用 Attach，确定前调用 Flush，关闭时调用 Detach。
+    /// </summary>
+    public interface ITaskEditor
+    {
+        void Attach(ITaskEditSession session);      // 载入会话里的数据；重复调用会先 Detach
+        void Flush();                               // 把尚未提交的改动立刻写进会话（不解除会话）
+        void Detach();                              // 写回改动并解除对会话的订阅，防止被事件引用着无法回收
+    }
+
+
+
     public enum RunOutcome { Completed, Paused, Failed, Cancelled }
 
     public sealed class RunReport

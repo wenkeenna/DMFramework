@@ -27,10 +27,12 @@ namespace DM.Workbench.ViewModels
     /// 选中任务 → 通过区域导航把 ITaskEditSession 交给右侧编辑界面；运行时程序自动选中当前任务，不导航（避免频繁切换），
     /// 运行结束后若选中项与编辑界面不一致，再统一导航一次。
     /// </summary>
+    /// <summary>
+    /// 任务列表主 ViewModel，注册为单例。
+    /// 编辑任务：双击 / 回车 / 右键"编辑…"打开模态的编辑窗口，改动先放在草稿里，点"确定"才写进列表。
+    /// </summary>
     public sealed class TaskListViewModel : BindableBase
     {
-        private const string DetailRegion = "TaskDetailRegion";
-
         private readonly TaskListEditor _editor;
         private readonly ITaskRunner _runner;
         private readonly IProjectLifecycle _life;
@@ -39,23 +41,22 @@ namespace DM.Workbench.ViewModels
         private readonly ITaskTypeRegistry _types;
         private readonly ICurrentUser _user;
         private readonly IDialogService _dialogs;
-        private readonly IRegionManager _regions;
         private readonly List<DelegateCommand> _cmds = new List<DelegateCommand>();
         private readonly DispatcherTimer _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
         private readonly Stopwatch _sw = new Stopwatch();
-        private TaskRow _selected, _running, _navigated;
+        private TaskRow _selected, _running;
         private TaskItem _clip;
         private string _message = "";
-        private bool _auto;
 
         public TaskListViewModel(TaskListEditor editor, ITaskRunner runner, IProjectLifecycle life, IProjectCatalog catalog,
                                  ILastProjectStore last, ITaskTypeRegistry types, ICurrentUser user, IDialogService dialogs,
-                                 IRegionManager regions, IEventAggregator events)
+                                 IEventAggregator events)
         {
             _editor = editor; _runner = runner; _life = life; _catalog = catalog; _last = last;
-            _types = types; _user = user; _dialogs = dialogs; _regions = regions;
+            _types = types; _user = user; _dialogs = dialogs;
 
             AddTaskCommand = Cmd(OnAdd, () => CanEdit && ProjectOpen);
+            EditTaskCommand = Cmd(() => OpenEditor(_selected), () => SelectedTask != null && ProjectOpen && !IsRunning);
             DeleteTaskCommand = Cmd(OnDelete, () => CanEdit && SelectedTask != null);
             MoveUpCommand = Cmd(() => MoveTo(_selected, Index - 1), () => CanEdit && Index > 0);
             MoveDownCommand = Cmd(() => MoveTo(_selected, Index + 1), () => CanEdit && Index >= 0 && Index < Rows.Count - 1);
@@ -77,12 +78,7 @@ namespace DM.Workbench.ViewModels
 
             _runner.TaskStarted += OnTaskStarted;
             _runner.TaskFinished += OnTaskFinished;
-            _runner.RunningChanged += (s, e) =>
-            {
-                _editor.IsLocked = _runner.IsRunning;
-                Changed();
-                if (!_runner.IsRunning && _selected != _navigated) Navigate();      // 运行期间选中项变了，结束后让编辑界面跟上
-            };
+            _runner.RunningChanged += (s, e) => { _editor.IsLocked = _runner.IsRunning; Changed(); };
             _editor.ReadOnlyChanged += (s, e) => Changed();
             _editor.DirtyChanged += (s, e) => RaisePropertyChanged(nameof(IsProjectSaved));
             _editor.Notice += m => Message = m;
@@ -113,7 +109,6 @@ namespace DM.Workbench.ViewModels
             {
                 if (!SetProperty(ref _selected, value)) return;
                 RaiseSelectionProps(); RaiseAll();
-                if (!_auto) Navigate();
             }
         }
 
@@ -125,6 +120,7 @@ namespace DM.Workbench.ViewModels
         public string SelTypeName => _selected == null ? "" : _selected.TypeName;
 
         public DelegateCommand AddTaskCommand { get; }
+        public DelegateCommand EditTaskCommand { get; }
         public DelegateCommand DeleteTaskCommand { get; }
         public DelegateCommand MoveUpCommand { get; }
         public DelegateCommand MoveDownCommand { get; }
@@ -154,8 +150,37 @@ namespace DM.Workbench.ViewModels
                 {
                     TaskRow row = _editor.Add(r.Parameters.GetValue<string>("TypeKey"), _selected == null ? (int?)null : Index + 1);
                     SelectedTask = row; Message = "已添加：" + row.Name;
+                    UiThread.Post(() => OpenEditor(row));            // 添加后直接弹出参数窗口，省一次双击
                 }
                 catch (Exception ex) { Message = ex.Message; }
+            });
+        }
+
+        /// <summary>打开任务的参数编辑窗口（双击、回车、右键菜单、工具栏共用）。</summary>
+        public void OpenEditor(TaskRow row)
+        {
+            if (row == null) return;
+            if (IsRunning) { Message = "任务运行中不能打开编辑窗口（模态窗口会挡住主窗口的急停按钮）。"; return; }
+
+            ITaskType type;
+            if (!_types.TryGet(row.TypeKey, out type)) { Message = "未知任务类型 " + row.TypeKey + "，无法编辑（是否缺少扩展包？）。"; return; }
+            if (string.IsNullOrEmpty(type.EditorView)) { Message = type.DisplayName + " 没有参数界面。"; return; }
+
+            var session = new DraftEditSession(_editor, row, type);
+            var p = new DialogParameters
+            {
+                { "Session", session }, { "View", type.EditorView },
+                { "Title", "编辑任务 — " + row.Name + "（" + type.DisplayName + "）" }
+            };
+
+            _dialogs.ShowDialog("TaskEditDialog", p, r =>
+            {
+                RaiseSelectionProps();
+                if (r.Result != ButtonResult.OK || r.Parameters == null) return;
+
+                bool converted = r.Parameters.ContainsKey("Converted") && r.Parameters.GetValue<bool>("Converted");
+                if (converted) { Message = "已转换：" + row.Name; UiThread.Post(() => OpenEditor(row)); }      // 任务类型变了，用新类型的界面重新打开
+                else if (session.Applied) Message = "已更新：" + row.Name;
             });
         }
 
@@ -206,7 +231,7 @@ namespace DM.Workbench.ViewModels
             int next = Index + 1;
             if (next >= Rows.Count) { Message = "已经是最后一步。"; return; }
             TaskRow row = Rows[next];
-            AutoSelect(row);
+            SelectedTask = row;
             if (!row.Enabled) { Message = "“" + row.Name + "”已禁用，已跳过。"; return; }
             Run(new List<TaskRow> { row }, false);
         }
@@ -220,7 +245,7 @@ namespace DM.Workbench.ViewModels
             {
                 RunReport rep = await _runner.RunAsync(rows.Select(r => r.Item).ToList(), loop);
                 if (rep.Outcome == RunOutcome.Failed && rep.FailedTaskId != null)
-                { TaskRow bad = Find(rep.FailedTaskId); if (bad != null) AutoSelect(bad); }
+                { TaskRow bad = Find(rep.FailedTaskId); if (bad != null) SelectedTask = bad; }
                 Message = Describe(rep, loop);
             }
             catch (Exception ex) { Message = "运行异常：" + ex.Message; }
@@ -243,7 +268,7 @@ namespace DM.Workbench.ViewModels
             if (row == null) return;
             row.State = TaskRunState.Running; row.LastError = null; row.ExecutionTime = TimeSpan.Zero;
             _running = row; _sw.Restart(); _timer.Start();
-            AutoSelect(row);
+            SelectedTask = row;                                  // 自动选中当前任务，视图会滚动到可见位置
         }
 
         private void OnTaskFinished(object s, TaskFinishedEventArgs e)
@@ -298,31 +323,8 @@ namespace DM.Workbench.ViewModels
 
         private static string FailText(ProjectOpenResult r) { return string.Join("；", r.Failures.Select(f => f.Name + "：" + f.Error.Message)); }
 
-        // ───── 右侧编辑界面导航 ─────
-        private void Navigate()
-        {
-            _navigated = _selected;
-            ITaskType t;
-            if (_selected == null || !_types.TryGet(_selected.TypeKey, out t) || string.IsNullOrEmpty(t.EditorView))
-            { Go("EmptyTaskView", new NavigationParameters()); return; }      // 必须清空旧界面，否则会误改上一个任务
-
-            var session = new TaskEditSession(_editor, _selected, Navigate);
-            Go(t.EditorView, new NavigationParameters { { "Session", session } });
-        }
-
-        private void Go(string view, NavigationParameters p)
-        {
-            try
-            {
-                _regions.RequestNavigate(DetailRegion, view, r =>
-                { if (r.Result != true) Message = "无法打开编辑界面 " + view + "：" + (r.Error == null ? "" : r.Error.Message); }, p);
-            }
-            catch (Exception ex) { Message = "无法打开编辑界面 " + view + "：" + ex.Message; }
-        }
-
         // ───── 工具 ─────
         private TaskRow Find(string id) { return Rows.FirstOrDefault(r => r.Id == id); }
-        private void AutoSelect(TaskRow row) { _auto = true; SelectedTask = row; _auto = false; }
         private DelegateCommand Cmd(Action exec, Func<bool> can) { var c = new DelegateCommand(exec, can); _cmds.Add(c); return c; }
         private void RaiseAll() { foreach (DelegateCommand c in _cmds) c.RaiseCanExecuteChanged(); }
 

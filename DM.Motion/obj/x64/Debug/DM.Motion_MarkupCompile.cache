@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\项目\DMFramework\DM.Motion\obj\x64\Debug\
+D:\DMFramework\DM.Motion\obj\x64\Debug\
 DM.Motion
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 5717678131
 
 21-886106514
-23757674306
+23644976389
 TaskEditors\IoExecutionEditorView.xaml;TaskEditors\IoStepListEditor.xaml;TaskEditors\Line2EditorView.xaml;TaskEditors\MultiAxisEditorView.xaml;TaskEditors\SingleAxisEditorView.xaml;
 
 False

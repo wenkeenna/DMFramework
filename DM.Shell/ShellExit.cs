@@ -18,8 +18,24 @@ namespace DM.Shell
         public static void Run(IContainerProvider c)
         {
             ILastProjectStore last = null;
-            try { last = c.Resolve<ILastProjectStore>(); } catch (Exception) { }
-            AppShutdown.Run(c, name => { try { if (last != null) last.Write(name); } catch (Exception) { } });
+            try 
+            { 
+                last = c.Resolve<ILastProjectStore>(); 
+            } 
+            catch (Exception) 
+            { 
+
+            }
+
+            AppShutdown.Run(c, name => 
+            { 
+                try 
+                { 
+                    if (last != null) last.Write(name); 
+                } 
+                catch (Exception) 
+                { } 
+            });
         }
     }
 }

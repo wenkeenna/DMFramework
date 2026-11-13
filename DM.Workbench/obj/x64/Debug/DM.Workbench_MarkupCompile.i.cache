@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-51811670386
+5-840536778
 
-1847927556
+1913561440
 22-1537886174
-Views\EmptyTaskView.xaml;Views\NewProjectDialog.xaml;Views\OpenProjectDialog.xaml;Views\TaskListView.xaml;Views\TaskTypePickerDialog.xaml;
+Views\NewProjectDialog.xaml;Views\OpenProjectDialog.xaml;Views\TaskEditDialog.xaml;Views\TaskListView.xaml;Views\TaskTypePickerDialog.xaml;
 
 False
 

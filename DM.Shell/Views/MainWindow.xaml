@@ -44,22 +44,14 @@
         </Border>
 
         <Grid Grid.Row="2" Margin="4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="190" />
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="440" />
+                <ColumnDefinition Width="560" MinWidth="420" />
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-            <ContentControl Grid.Row="0" Grid.Column="0" prism:RegionManager.RegionName="TaskListRegion" />
-            <GridSplitter Grid.Row="0" Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-            <ContentControl Grid.Row="0" Grid.Column="2" prism:RegionManager.RegionName="TaskDetailRegion" />
-            <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" />
-            <v:LogPanel Grid.Row="2" Grid.ColumnSpan="3" />
+            <ContentControl Grid.Column="0" prism:RegionManager.RegionName="TaskListRegion" />
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <v:LogPanel Grid.Column="2" />
         </Grid>
 
         <StatusBar Grid.Row="3">

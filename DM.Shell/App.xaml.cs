@@ -21,7 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -58,15 +60,37 @@ namespace DM.Shell
 
         protected override void RegisterTypes(IContainerRegistry r)
         {
-            AppPaths paths = CreatePaths();
-            paths.EnsureDirectories();
+            //AppPaths paths = CreatePaths();
+            //paths.EnsureDirectories();
+            MessageBox.Show(AppPaths.Diagnose(), "启动自检");
+            AppPaths paths;
+            try
+            {
+                paths = CreatePaths();
+                paths.EnsureDirectories();
+            }
+            catch (Exception ex)
+            {
+                // 此时日志模块还没有加载，只能用消息框
+                MessageBox.Show(
+                    "程序无法使用数据目录，必须退出。\n\n" + ex.Message +
+                    "\n\n常见原因：\n" +
+                    "1. 该目录原来由管理员账号创建，当前账号没有写入权限\n" +
+                    "2. 所在磁盘不存在、只读或被锁定\n" +
+                    "3. 杀毒软件或 Windows“受控文件夹访问”拦截了本程序\n\n" +
+                    "请修复目录权限，或在 App.xaml.cs 的 CreatePaths 里换一个目录。",
+                    "启动失败", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(1);
+                return;
+            }
+
             r.RegisterInstance(paths);
             r.RegisterInstance(new ShellOptions(AppTitle));
             r.RegisterSingleton<LoginFlow>();
             r.RegisterDialog<AuditViewDialog, AuditViewDialogViewModel>("AuditViewDialog");
             RegisterCustomerTypes(r);
         }
-
+      
         protected override void ConfigureModuleCatalog(IModuleCatalog c)
         {
             c.AddModule<EngineModule>();            // 必须第一个：注册 AttachQueue
@@ -76,6 +100,7 @@ namespace DM.Shell
             c.AddModule<ScriptingModule>();
             c.AddModule<ScriptingUiModule>();
             c.AddModule<WorkbenchModule>();
+           // c.AddModule<ParametersModule>();
             ConfigureCustomerModules(c);
         }
 
@@ -87,7 +112,9 @@ namespace DM.Shell
             try
             {
                 var failures = Container.Resolve<AttachQueue>().RunAll();            // 此时所有模块的类型都已注册
-                foreach (var f in failures) SafeLog("模块初始化失败：" + f.Key, f.Value);
+                foreach (var f in failures) 
+                    SafeLog("模块初始化失败：" + f.Key, f.Value);
+
                 if (failures.Count > 0)
                     MessageBox.Show("以下模块初始化失败，相关功能不可用，详见日志：\n\n"
                         + string.Join("\n", failures.Select(f => f.Key + "：" + f.Value.Message)), "警告", MessageBoxButton.OK, MessageBoxImage.Warning);

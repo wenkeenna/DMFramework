@@ -161,6 +161,10 @@
       <Project>{D02F65AC-0DD0-4141-B801-EABA85EA59E0}</Project>
       <Name>DM.Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DM.UI\DM.UI.csproj">
+      <Project>{f8e6927b-bb1e-4455-aeb5-3e8717ece028}</Project>
+      <Name>DM.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AccountManagementDialog.xaml">

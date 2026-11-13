@@ -33,8 +33,11 @@ namespace DM.Process.Module
 
         protected override void Attach(ModuleScope s)
         {
-            s.TaskType<GlueTaskType>().TaskType<TouchProbeTaskType>()
-             .Command<ProbeCommand>().Command<GluePointCommand>().Command<GlueLineCommand>()
+            s.TaskType<GlueTaskType>()
+             .TaskType<TouchProbeTaskType>()
+             .Command<ProbeCommand>()
+             .Command<GluePointCommand>()
+             .Command<GlueLineCommand>()
              .Seeder<GlueDefaultsSeeder>();
         }
     }

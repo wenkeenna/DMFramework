@@ -97,21 +97,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Services\TaskEditSession.cs" />
+    <Compile Include="Services\DraftEditSession.cs" />
     <Compile Include="Services\TaskListEditor.cs" />
     <Compile Include="Services\TaskListProjectPart.cs" />
     <Compile Include="ViewModels\NewProjectDialogViewModel.cs" />
     <Compile Include="ViewModels\OpenProjectDialogViewModel.cs" />
+    <Compile Include="ViewModels\TaskEditDialogViewModel.cs" />
     <Compile Include="ViewModels\TaskListViewModel.cs" />
     <Compile Include="ViewModels\TaskTypePickerViewModel.cs" />
-    <Compile Include="Views\EmptyTaskView.xaml.cs">
-      <DependentUpon>EmptyTaskView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\NewProjectDialog.xaml.cs">
       <DependentUpon>NewProjectDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OpenProjectDialog.xaml.cs">
       <DependentUpon>OpenProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskEditDialog.xaml.cs">
+      <DependentUpon>TaskEditDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TaskListView.xaml.cs">
       <DependentUpon>TaskListView.xaml</DependentUpon>
@@ -145,15 +146,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\EmptyTaskView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\NewProjectDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OpenProjectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskEditDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

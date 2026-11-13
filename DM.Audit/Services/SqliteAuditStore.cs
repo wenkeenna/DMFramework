@@ -3,6 +3,7 @@ using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,29 @@ namespace DM.Audit.Services
         private readonly string _cs;
 
         static SqliteAuditStore() 
-        { 
-            SQLitePCL.Batteries.Init(); 
+        {
+            //SQLitePCL.Batteries.Init(); 
+            SQLitePCL.Batteries_V2.Init();
         }
 
         public SqliteAuditStore(string dbPath)
         {
             _cs = new SqliteConnectionStringBuilder { DataSource = dbPath }.ToString();
+
+            var testFile = Path.Combine(Path.GetDirectoryName(dbPath), "write_test.tmp");
+            try
+            {
+                File.WriteAllText(testFile, "test");
+                File.Delete(testFile);
+                Console.WriteLine("目录可写: OK");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"目录不可写: {ex.Message}");
+            }
+
+
+
             using (var c = Open())
             using (var cmd = c.CreateCommand())
             {

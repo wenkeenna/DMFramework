@@ -32,6 +32,22 @@ namespace DM.Workbench.Views
 
         private TaskListViewModel Vm { get { return DataContext as TaskListViewModel; } }
 
+
+        private void TaskItem_MouseDoubleClick(object s, MouseButtonEventArgs e)
+        {
+            var row = (s as ListBoxItem)?.DataContext as TaskRow;
+            if (row == null || Vm == null) return;
+            Vm.OpenEditor(row);
+            e.Handled = true;                  // 否则嵌套的列表项会重复触发
+        }
+
+        /// <summary>右键先选中被点的任务，菜单里的命令才会作用在它身上（ListBox 默认右键不改变选中项）。</summary>
+        private void TaskListBox_PreviewMouseRightButtonDown(object s, MouseButtonEventArgs e)
+        {
+            var row = RowAt(e.OriginalSource as DependencyObject);
+            if (row != null && Vm != null) Vm.SelectedTask = row;
+        }
+
         /// <summary>选中项变化（含程序自动选中）时滚动到可见位置，运行时能看到当前任务。</summary>
         private void TaskListBox_SelectionChanged(object s, SelectionChangedEventArgs e)
         { if (TaskListBox.SelectedItem != null) TaskListBox.ScrollIntoView(TaskListBox.SelectedItem); }

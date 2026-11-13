@@ -4,7 +4,6 @@ using DM.Scripting.Services;
 using DM.UI;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +22,7 @@ namespace DM.Scripting.UI.ViewModels
     /// 3. 切换任务或离开时若有未写回的修改，先写回，不丢字。
     /// 4. 会话只读（运行中、权限不足）时编辑器只读；恢复可写时若有未写回内容，自动写回。
     /// </summary>
-    public sealed class ScriptEditorViewModel : BindableBase, INavigationAware
+    public sealed class ScriptEditorViewModel : BindableBase, ITaskEditor
     {
         private readonly DispatcherTimer _timer;
         private ITaskEditSession _session;
@@ -70,16 +69,31 @@ namespace DM.Scripting.UI.ViewModels
             set { if (SetProperty(ref _selectedError, value) && value != null) JumpToLine?.Invoke(value.Line); }
         }
 
-        // ───── 导航 ─────
-        public bool IsNavigationTarget(NavigationContext c) { return true; }       // 复用同一个实例
-        public void OnNavigatedFrom(NavigationContext c) { _timer.Stop(); Commit(); }
+        //// ───── 导航 ─────
+        //public bool IsNavigationTarget(NavigationContext c) { return true; }       // 复用同一个实例
+        //public void OnNavigatedFrom(NavigationContext c) { _timer.Stop(); Commit(); }
 
-        public void OnNavigatedTo(NavigationContext c)
+        //public void OnNavigatedTo(NavigationContext c)
+        //{
+        //    _timer.Stop(); Commit();                                                // 先写回上一个任务
+        //    if (_session != null) _session.ReadOnlyChanged -= OnReadOnlyChanged;
+
+        //    _session = c.Parameters.ContainsKey("Session") ? c.Parameters.GetValue<ITaskEditSession>("Session") : null;
+        //    _loading = true;
+        //    try { Text = _session == null ? "" : (_session.Data ?? ""); } finally { _loading = false; }
+        //    _dirty = false;
+
+        //    if (_session == null) { ReadOnly = true; Errors.Clear(); Status = "未选中任务。"; return; }
+        //    _session.ReadOnlyChanged += OnReadOnlyChanged;
+        //    ReadOnly = _session.ReadOnly;
+        //    Check();
+        //}
+
+        // ───── ITaskEditor ─────
+        public void Attach(ITaskEditSession session)
         {
-            _timer.Stop(); Commit();                                                // 先写回上一个任务
-            if (_session != null) _session.ReadOnlyChanged -= OnReadOnlyChanged;
-
-            _session = c.Parameters.ContainsKey("Session") ? c.Parameters.GetValue<ITaskEditSession>("Session") : null;
+            Detach();
+            _session = session;
             _loading = true;
             try { Text = _session == null ? "" : (_session.Data ?? ""); } finally { _loading = false; }
             _dirty = false;
@@ -90,6 +104,14 @@ namespace DM.Scripting.UI.ViewModels
             Check();
         }
 
+        public void Flush() { _timer.Stop(); Commit(); }
+
+        public void Detach()
+        {
+            Flush();
+            if (_session != null) { _session.ReadOnlyChanged -= OnReadOnlyChanged; _session = null; }
+        }
+
         private void OnReadOnlyChanged(object s, EventArgs e)
         {
             UiThread.Invoke(() =>
@@ -98,6 +120,7 @@ namespace DM.Scripting.UI.ViewModels
                 if (!ReadOnly && _dirty) Commit();
             });
         }
+
 
         private void Commit()
         {

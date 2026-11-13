@@ -29,13 +29,13 @@ namespace Customer.X.Pack
             catalog.AddModule<CustomerXPackModule>();
         }
 
+        /// <summary>所有落盘位置的根目录；其下 Config、Logs、Projects 自动创建。</summary>
         protected override AppPaths CreatePaths()
         {
-            return new AppPaths(@"D:\MyApp-Test");
+            return new AppPaths(@"D:\DMData\CustomerX");
         }
 
-        /// <summary>所有落盘位置的根目录；其下 Config、Logs、Projects 自动创建。</summary>
-        //protected override AppPaths CreatePaths() { return new AppPaths(@"D:\MyApp-Test"); }
+
 
         /// <summary>客户专有服务在这里注册（仪器、传感器等），接口由对应模块或 Pack 定义。</summary>
         protected override void RegisterCustomerTypes(IContainerRegistry r)
@@ -44,13 +44,6 @@ namespace Customer.X.Pack
             //r.RegisterSingleton<IPowerMeter, MyPowerMeter>();                                  // 功率计
         }
 
-        ///// <summary>按这台机器的需要选模块；驱动模块决定用哪块运动卡（machine.json 的 Motion.Driver 必须与驱动名一致）。</summary>
-        //protected override void ConfigureCustomerModules(IModuleCatalog c)
-        //{
-        //    c.AddModule<MotionModule>();
-        //    // c.AddModule<LeadshineMotionModule>();     // 雷赛驱动，待实现
-        //    c.AddModule<ProcessModule>();
-        //    c.AddModule<CustomerXPackModule>();
-        //}
+     
     }
 }

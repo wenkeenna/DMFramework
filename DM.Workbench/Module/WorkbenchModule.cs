@@ -20,7 +20,9 @@ namespace DM.Workbench.Module
             r.RegisterSingleton<TaskListViewModel>();               // 单例：多次创建视图也只订阅一次运行器事件
 
             r.RegisterForNavigation<TaskListView, TaskListViewModel>();
-            r.RegisterForNavigation<EmptyTaskView>("EmptyTaskView");
+            // r.RegisterForNavigation<EmptyTaskView>("EmptyTaskView");
+            r.RegisterDialog<TaskEditDialog, TaskEditDialogViewModel>("TaskEditDialog");
+
 
             r.RegisterDialog<TaskTypePickerDialog, TaskTypePickerViewModel>("TaskTypePickerDialog");
             r.RegisterDialog<NewProjectDialog, NewProjectDialogViewModel>("NewProjectDialog");

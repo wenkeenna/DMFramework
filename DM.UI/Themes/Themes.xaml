@@ -7,5 +7,6 @@
         <ResourceDictionary Source="Styles/Expanders.xaml" />
         <ResourceDictionary Source="Styles/DataGrid.xaml" />
         <ResourceDictionary Source="Styles/Fields.xaml" />
+        <ResourceDictionary Source="Styles/ListView.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

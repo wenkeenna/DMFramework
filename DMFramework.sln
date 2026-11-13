@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Motion.Leadshine", "DM.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer.X.Pack", "Customer.X.Pack\Customer.X.Pack.csproj", "{42698A49-E97C-44C4-9E46-031BC1720614}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DM.Parameters", "DM.Parameters\DM.Parameters.csproj", "{CC1F8576-04BA-4486-A258-04455EDE5683}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,14 @@ Global
 		{42698A49-E97C-44C4-9E46-031BC1720614}.Release|Any CPU.Build.0 = Release|Any CPU
 		{42698A49-E97C-44C4-9E46-031BC1720614}.Release|x64.ActiveCfg = Release|x64
 		{42698A49-E97C-44C4-9E46-031BC1720614}.Release|x64.Build.0 = Release|x64
+		{CC1F8576-04BA-4486-A258-04455EDE5683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1F8576-04BA-4486-A258-04455EDE5683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1F8576-04BA-4486-A258-04455EDE5683}.Debug|x64.ActiveCfg = Debug|x64
+		{CC1F8576-04BA-4486-A258-04455EDE5683}.Debug|x64.Build.0 = Debug|x64
+		{CC1F8576-04BA-4486-A258-04455EDE5683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1F8576-04BA-4486-A258-04455EDE5683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC1F8576-04BA-4486-A258-04455EDE5683}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC1F8576-04BA-4486-A258-04455EDE5683}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

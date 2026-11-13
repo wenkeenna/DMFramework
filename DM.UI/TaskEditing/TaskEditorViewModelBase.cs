@@ -14,13 +14,13 @@ namespace DM.UI.TaskEditing
 {
     /// <summary>
     /// 专用任务编辑器基类。界面直接绑定 Data.xxx，改动自动：
-    ///   1. 立即刷新校验提示（和转换预览）
-    ///   2. 停顿 300ms 后写回任务（Commit）；切换任务或离开时立即写回，不丢改动
-    /// 运行中或权限不足时会话只读，IsEditable=false，界面整体禁用。
+    ///   1. 立即刷新校验提示和转换预览
+    ///   2. 停顿 300ms 后写进会话（Commit）；Flush/Detach 时立即写
+    /// 会话只读（权限不足）时 IsEditable=false，界面整体禁用。
     /// 载入时数据损坏：提示并载入默认值，但在用户改动之前不会写回，不会悄悄覆盖原数据。
     /// 任务类型实现了 ITaskConvertible 且目标类型已安装时，才提供转换预览和转换按钮。
     /// </summary>
-    public abstract class TaskEditorViewModelBase<TData> : BindableBase, INavigationAware where TData : BindableBase, new()
+    public abstract class TaskEditorViewModelBase<TData> : BindableBase, ITaskEditor where TData : BindableBase, new()
     {
         private readonly ITaskType _type;
         private readonly ITaskConvertible _conv;
@@ -58,17 +58,11 @@ namespace DM.UI.TaskEditing
         /// <summary>数据载入后调用，子类可重写（例如设置默认选中项）。</summary>
         protected virtual void OnLoaded() { }
 
-        // ───── 导航 ─────
-        public bool IsNavigationTarget(NavigationContext c) { return true; }          // 复用同一个实例
-        public void OnNavigatedFrom(NavigationContext c) { Flush(); }
-
-        public void OnNavigatedTo(NavigationContext c)
+        // ───── ITaskEditor ─────
+        public void Attach(ITaskEditSession session)
         {
-            Flush();                                                                   // 先写回上一个任务
-            if (_session != null) _session.ReadOnlyChanged -= OnReadOnlyChanged;
-            if (_tracker != null) { _tracker.Dispose(); _tracker = null; }
-
-            _session = c.Parameters.ContainsKey("Session") ? c.Parameters.GetValue<ITaskEditSession>("Session") : null;
+            Detach();
+            _session = session;
             _loading = true;
             try
             {
@@ -87,6 +81,22 @@ namespace DM.UI.TaskEditing
             RefreshPreview();
         }
 
+        public void Flush()
+        {
+            _timer.Stop();
+            if (!_dirty || _session == null || _session.ReadOnly) return;
+            _session.Commit(TaskJson.Serialize(_data));
+            _dirty = false;
+        }
+
+        public void Detach()
+        {
+            Flush();
+            if (_session != null) { _session.ReadOnlyChanged -= OnReadOnlyChanged; _session = null; }
+            if (_tracker != null) { _tracker.Dispose(); _tracker = null; }
+            RaisePropertyChanged(nameof(IsEditable));
+        }
+
         private void OnReadOnlyChanged(object s, EventArgs e) { UiThread.Invoke(() => RaisePropertyChanged(nameof(IsEditable))); }
 
         private void Touch()
@@ -95,14 +105,6 @@ namespace DM.UI.TaskEditing
             _dirty = true; _loadWarning = null;
             RefreshPreview();
             _timer.Stop(); _timer.Start();
-        }
-
-        private void Flush()
-        {
-            _timer.Stop();
-            if (!_dirty || _session == null || _session.ReadOnly) return;
-            _session.Commit(TaskJson.Serialize(_data));                                // 标脏、审计、重名检查由列表一侧负责
-            _dirty = false;
         }
 
         private void RefreshPreview()

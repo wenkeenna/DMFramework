@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\项目\DMFramework\DM.Identity\obj\x64\Debug\
+D:\DMFramework\DM.Identity\obj\x64\Debug\
 DM.Identity
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 31372542571
 
 19275435470
-1342065609039
+1351713565651
 Views\AccountManagementDialog.xaml;Views\ChangePasswordDialog.xaml;Views\SignInDialog.xaml;
 
 False
