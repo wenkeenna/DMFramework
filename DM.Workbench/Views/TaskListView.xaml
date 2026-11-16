@@ -5,117 +5,127 @@
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
-        <Style x:Key="TaskItemStyle" TargetType="ListBoxItem">
-            <EventSetter Event="MouseDoubleClick" Handler="TaskItem_MouseDoubleClick" />
-            <Setter Property="Margin" Value="0,1,0,0" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border
-                            x:Name="border"
-                            Background="White"
-                            BorderBrush="#CFCFCF"
-                            BorderThickness="1"
-                            CornerRadius="3">
-                            <ContentPresenter />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#EEF6FF" />
-                                <Setter TargetName="border" Property="BorderBrush" Value="#5B9BD5" />
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#DCEEFF" />
-                                <Setter TargetName="border" Property="BorderBrush" Value="#5B9BD5" />
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Enabled}" Value="False">
-                                <Setter TargetName="border" Property="Opacity" Value="0.5" />
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DM.UI;component/Themes/Themes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
 
-        <DataTemplate x:Key="TaskItemTemplate">
-            <Grid Margin="4,3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
 
-                <DockPanel Grid.Row="0" LastChildFill="False">
-                    <Ellipse
-                        Width="10"
-                        Height="10"
-                        Margin="6,0,6,0"
-                        VerticalAlignment="Center"
-                        DockPanel.Dock="Right">
-                        <Ellipse.Style>
-                            <Style TargetType="Ellipse">
-                                <Setter Property="Fill" Value="#C8CCD1" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding State}" Value="Running">
-                                        <Setter Property="Fill" Value="#4DA3FF" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding State}" Value="Success">
-                                        <Setter Property="Fill" Value="#29A35A" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding State}" Value="Failed">
-                                        <Setter Property="Fill" Value="#B94A48" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding State}" Value="Cancelled">
-                                        <Setter Property="Fill" Value="#E0A030" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Ellipse.Style>
-                    </Ellipse>
-                    <TextBlock
-                        Width="26"
-                        VerticalAlignment="Center"
-                        Text="{Binding Order}" />
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        FontSize="14"
-                        FontWeight="SemiBold"
-                        Foreground="Green"
-                        Text="{Binding Name}" />
-                    <TextBlock
-                        Margin="8,0,0,0"
-                        VerticalAlignment="Center"
-                        FontSize="11"
-                        Opacity="0.55"
-                        Text="{Binding TypeName}" />
-                </DockPanel>
+            <Style x:Key="TaskItemStyle" TargetType="ListBoxItem">
+                <EventSetter Event="MouseDoubleClick" Handler="TaskItem_MouseDoubleClick" />
+                <Setter Property="Margin" Value="0,1,0,0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Border
+                       x:Name="border"
+                       Background="White"
+                       BorderBrush="#CFCFCF"
+                       BorderThickness="1"
+                       CornerRadius="3">
+                                <ContentPresenter />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#EEF6FF" />
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#5B9BD5" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#DCEEFF" />
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#5B9BD5" />
+                                </Trigger>
+                                <DataTrigger Binding="{Binding Enabled}" Value="False">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.5" />
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-                <DockPanel
-                    Grid.Row="1"
-                    Margin="26,1,0,0"
-                    LastChildFill="True">
-                    <TextBlock
-                        Margin="6,0,0,0"
-                        DockPanel.Dock="Right"
-                        FontFamily="Consolas"
-                        Text="{Binding ExecutionTimeText}" />
-                    <TextBlock
-                        MaxWidth="170"
-                        Margin="6,0,0,0"
-                        DockPanel.Dock="Right"
-                        Foreground="IndianRed"
-                        Text="{Binding LastError}"
-                        TextTrimming="CharacterEllipsis"
-                        ToolTip="{Binding LastError}" />
-                    <TextBlock
-                        Opacity="0.65"
-                        Text="{Binding Summary}"
-                        TextTrimming="CharacterEllipsis"
-                        ToolTip="{Binding Summary}" />
-                </DockPanel>
-            </Grid>
-        </DataTemplate>
+            <DataTemplate x:Key="TaskItemTemplate">
+                <Grid Margin="4,3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0" LastChildFill="False">
+                        <Ellipse
+                   Width="10"
+                   Height="10"
+                   Margin="6,0,6,0"
+                   VerticalAlignment="Center"
+                   DockPanel.Dock="Right">
+                            <Ellipse.Style>
+                                <Style TargetType="Ellipse">
+                                    <Setter Property="Fill" Value="#C8CCD1" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding State}" Value="Running">
+                                            <Setter Property="Fill" Value="#4DA3FF" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding State}" Value="Success">
+                                            <Setter Property="Fill" Value="#29A35A" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding State}" Value="Failed">
+                                            <Setter Property="Fill" Value="#B94A48" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding State}" Value="Cancelled">
+                                            <Setter Property="Fill" Value="#E0A030" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Ellipse.Style>
+                        </Ellipse>
+                        <TextBlock
+                   Width="26"
+                   VerticalAlignment="Center"
+                   Text="{Binding Order}" />
+                        <TextBlock
+                   VerticalAlignment="Center"
+                   FontSize="14"
+                   FontWeight="SemiBold"
+                   Foreground="Green"
+                   Text="{Binding Name}" />
+                        <TextBlock
+                   Margin="8,0,0,0"
+                   VerticalAlignment="Center"
+                   FontSize="11"
+                   Opacity="0.55"
+                   Text="{Binding TypeName}" />
+                    </DockPanel>
+
+                    <DockPanel
+               Grid.Row="1"
+               Margin="26,1,0,0"
+               LastChildFill="True">
+                        <TextBlock
+                   Margin="6,0,0,0"
+                   DockPanel.Dock="Right"
+                   FontFamily="Consolas"
+                   Text="{Binding ExecutionTimeText}" />
+                        <TextBlock
+                   MaxWidth="170"
+                   Margin="6,0,0,0"
+                   DockPanel.Dock="Right"
+                   Foreground="IndianRed"
+                   Text="{Binding LastError}"
+                   TextTrimming="CharacterEllipsis"
+                   ToolTip="{Binding LastError}" />
+                        <TextBlock
+                   Opacity="0.65"
+                   Text="{Binding Summary}"
+                   TextTrimming="CharacterEllipsis"
+                   ToolTip="{Binding Summary}" />
+                    </DockPanel>
+                </Grid>
+            </DataTemplate>
+
+        </ResourceDictionary>
+
+     
     </UserControl.Resources>
 
     <Grid Margin="6">
@@ -180,7 +190,7 @@
             </StackPanel>
         </DockPanel>
 
-        <StackPanel
+        <!--<StackPanel
             Grid.Row="1"
             Margin="0,0,0,4"
             Orientation="Horizontal">
@@ -218,7 +228,7 @@
                 Padding="10,2"
                 Command="{Binding PasteTaskCommand}"
                 Content="粘贴到下方" />
-        </StackPanel>
+        </StackPanel>-->
 
         <ListBox
             x:Name="TaskListBox"
@@ -316,7 +326,7 @@
             Height="44"
             Margin="0,4,0,0"
             Columns="5"
-            Rows="1">
+            Rows="1" Cursor="">
             <Button
                 Margin="2"
                 Command="{Binding RunFlowCommand}"
@@ -340,14 +350,16 @@
                 Margin="2"
                 Command="{Binding StopFlowCommand}"
                 Content="停止"
-                FontFamily="{DynamicResource Iconfont}"
+                FontFamily="{DynamicResource  Iconfont}"
                 Style="{DynamicResource LabViewButton}"
                 Tag="&#xe63e;" />
             <Button
                 Margin="2"
                 Command="{Binding ResetStateCommand}"
                 Content="重置"
-                Style="{DynamicResource LabViewButton}" />
+                FontFamily="{StaticResource Iconfont}"
+                Style="{DynamicResource LabViewButton}" 
+                Tag="&#xe63e;"/>
         </UniformGrid>
 
         <Border

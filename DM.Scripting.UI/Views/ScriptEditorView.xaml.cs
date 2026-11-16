@@ -41,6 +41,7 @@ namespace DM.Scripting.UI.Views
             DataContextChanged += (s, e) => Attach(e.NewValue as ScriptEditorViewModel);
             Editor.TextChanged += (s, e) => { if (_vm != null && !_sync) { _sync = true; _vm.Text = Editor.Text; _sync = false; } };
             Editor.TextArea.TextEntered += OnTextEntered;
+            Loaded += (s, e) => Attach(DataContext as ScriptEditorViewModel);
         }
 
         private void Attach(ScriptEditorViewModel vm)

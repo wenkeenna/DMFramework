@@ -66,7 +66,6 @@ namespace DM.Motion.Services
         void StopAll();
         double GetPosition(string axis);
         AxisStatus GetStatus(string axis);
-
         bool GetInput(string name);
         bool GetOutput(string name);
         void SetOutput(string name, bool on);

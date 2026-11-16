@@ -82,6 +82,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CommonDraft.cs" />
     <Compile Include="Models\TaskRow.cs" />
     <Compile Include="Module\WorkbenchModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

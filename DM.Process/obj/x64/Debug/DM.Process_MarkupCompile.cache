@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\DMFramework\DM.Process\obj\x64\Debug\
+C:\Users\Administrator\Downloads\DMFramework-main\DMFramework-main\DM.Process\obj\x64\Debug\
 DM.Process
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 31969364503
 
 17184407633
-24-1780035100
+24-714981356
 Editors\GlueEditorView.xaml;Editors\ProbeLaneEditor.xaml;Editors\TouchProbeEditorView.xaml;
 
 False

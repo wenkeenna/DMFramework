@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\DMFramework\DM.Scripting.UI\obj\x64\Debug\
+C:\Users\Administrator\Downloads\DMFramework-main\DMFramework-main\DM.Scripting.UI\obj\x64\Debug\
 DM.Scripting.UI
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 11189611255
 
 6578311658
-25-2034657364
+25324189552
 Views\ScriptEditorView.xaml;
 
 False

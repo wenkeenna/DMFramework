@@ -35,9 +35,12 @@ namespace DM.Motion.Services
         private readonly HashSet<string> _busy = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         private volatile IMotionDriver _driver;
 
-        public MotionService(IMachineConfig machine, IMotionDriverCatalog catalog, IDeviceHub hub, IEventAggregator events, IAppLogger log)
+        public MotionService(IMachineConfig machine, IMotionProfile profile, IMotionDriverCatalog catalog, IDeviceHub hub, IEventAggregator events, IAppLogger log)
         {
             _cfg = machine.Get<MotionConfig>("Motion");
+            _cfg = profile != null ? profile.Build() : machine.Get<MotionConfig>("Motion");
+         
+
             _catalog = catalog; _hub = hub; _log = log;
             foreach (AxisConfig a in _cfg.Axes) if (!string.IsNullOrWhiteSpace(a.Name)) _axes[a.Name] = a;
             foreach (IoConfig i in _cfg.Inputs) if (!string.IsNullOrWhiteSpace(i.Name)) _in[i.Name] = i;

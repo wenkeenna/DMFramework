@@ -1,5 +1,6 @@
 ﻿using DM.Engine.Hosting;
 using DM.Motion.Commands;
+using DM.Motion.Models;
 using DM.Motion.Services;
 using DM.Motion.TaskEditors;
 using DM.Motion.Tasks;
@@ -30,6 +31,9 @@ namespace DM.Motion.Module
 
             r.RegisterSingleton<SingleAxisTaskType>(); r.RegisterSingleton<MultiAxisTaskType>();
             r.RegisterSingleton<Line2TaskType>(); r.RegisterSingleton<IoExecutionTaskType>();
+
+            r.RegisterSingleton<MotionProfileProvider>(c => new MotionProfileProvider(() => c.Resolve<IMotionProfile>()));
+
 
             r.RegisterForNavigation<SingleAxisEditorView, SingleAxisEditorViewModel>("SingleAxisEditorView");
             r.RegisterForNavigation<MultiAxisEditorView, MultiAxisEditorViewModel>("MultiAxisEditorView");

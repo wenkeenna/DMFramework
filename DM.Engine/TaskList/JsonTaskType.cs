@@ -15,14 +15,16 @@ namespace DM.Engine.TaskList
     /// </summary>
     public abstract class JsonTaskType<TData> : ITaskType where TData : class, new()
     {
-        protected JsonTaskType(string key, string displayName, string group, string editorView)
-        { Key = key; DisplayName = displayName; Group = group; EditorView = editorView; }
+        protected JsonTaskType(string key, string displayName, string group, string editorView,string description = null)
+        { Key = key; DisplayName = displayName; Group = group; EditorView = editorView; _description = description; }
 
         public string Key { get; }
         public string DisplayName { get; }
         public string Group { get; }
         public string EditorView { get; }
 
+        private readonly string _description;
+        public string Description => _description ?? DisplayName;       // 没写说明时退回显示名，不会出现空白
         public string CreateDefaultData() { return TaskJson.Serialize(new TData()); }
 
         public string Summary(string data)

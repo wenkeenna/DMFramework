@@ -99,6 +99,7 @@
     <Compile Include="TaskList\RunContext.cs" />
     <Compile Include="TaskList\TaskFile.cs" />
     <Compile Include="TaskList\TaskJson.cs" />
+    <Compile Include="TaskList\TaskReferences.cs" />
     <Compile Include="TaskList\TaskRunner.cs" />
     <Compile Include="TaskList\TaskTypeRegistry.cs" />
   </ItemGroup>

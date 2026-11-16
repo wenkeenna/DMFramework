@@ -28,6 +28,9 @@
                 <MenuItem Header="文件(_F)">
                     <MenuItem Header="退出(_X)" Command="{Binding ExitCommand}" />
                 </MenuItem>
+                <MenuItem Header="编辑(_E)">
+                    <MenuItem Header="项目参数(_P)…" Command="{Binding ParameterEditCommand}" />
+                </MenuItem>
                 <MenuItem Header="用户(_U)">
                     <MenuItem Header="切换用户(_S)" Command="{Binding SwitchUserCommand}" />
                     <MenuItem Header="修改密码(_P)" Command="{Binding ChangePasswordCommand}" />

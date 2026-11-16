@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Commands\MotionCommands.cs" />
     <Compile Include="Models\MotionModels.cs" />
+    <Compile Include="Models\MotionProfile.cs" />
     <Compile Include="Module\MotionModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

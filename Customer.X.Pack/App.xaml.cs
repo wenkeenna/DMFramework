@@ -1,4 +1,6 @@
-﻿using DM.Core.Common;
+﻿using Customer.X.Pack.Motion;
+using DM.Core.Common;
+using DM.Motion.Models;
 using DM.Motion.Module;
 using DM.Process.Module;
 using DM.Shell;
@@ -42,6 +44,10 @@ namespace Customer.X.Pack
         {
             //r.RegisterSingleton<DM.Process.Services.IForceSource, MyPressureForceSource>();   // 力传感器（见第 3 部分）
             //r.RegisterSingleton<IPowerMeter, MyPowerMeter>();                                  // 功率计
+
+
+            r.RegisterSingleton<IMotionProfile, XMotionProfile>();
+            r.RegisterInstance(XLeadshine.Create());
         }
 
      

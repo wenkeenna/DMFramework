@@ -159,6 +159,10 @@
       <Project>{DD9F6908-861D-4F84-9321-F2D71CB31C9E}</Project>
       <Name>DM.Log</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DM.Parameters\DM.Parameters.csproj">
+      <Project>{CC1F8576-04BA-4486-A258-04455EDE5683}</Project>
+      <Name>DM.Parameters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DM.Scripting.UI\DM.Scripting.UI.csproj">
       <Project>{E3B01EC8-D408-4B51-9BA8-0027189CA578}</Project>
       <Name>DM.Scripting.UI</Name>

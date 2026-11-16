@@ -28,6 +28,7 @@ namespace DM.Core.TaskList
     {
         string Key { get; }
         string DisplayName { get; }
+        string Description { get; }                 // 显示在编辑窗口的"任务说明"里
         string Group { get; }
         string EditorView { get; }                  // Prism 导航视图名；null 表示没有专用界面
         string CreateDefaultData();
@@ -106,4 +107,11 @@ namespace DM.Core.TaskList
         Task<RunReport> RunAsync(IReadOnlyList<TaskItem> tasks, bool loop);    // 已有运行时抛 InvalidOperationException
         void Stop(string reason);
     }
+
+    /// <summary>任务列表提供"哪些任务引用了某个参数键"的查询，参数编辑窗口用它在重命名、删除前给出提示。</summary>
+    public interface ITaskReferenceFinder
+    {
+        IReadOnlyList<string> FindReferences(string key, bool isGroup);
+    }
+
 }

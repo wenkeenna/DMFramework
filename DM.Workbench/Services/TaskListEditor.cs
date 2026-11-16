@@ -18,7 +18,7 @@ namespace DM.Workbench.Services
     /// 只能在 UI 线程使用（Rows 绑定界面）；项目参与者通过 UiThread 切线程后调用。
     /// 编辑需要 Engineer 及以上角色，运行中整体锁定。
     /// </summary>
-    public sealed class TaskListEditor
+    public sealed class TaskListEditor : ITaskReferenceFinder
     {
         public static readonly AccessRole EditRole = AccessRole.Engineer;
         private const int MaxAuditText = 4000;
@@ -126,8 +126,8 @@ namespace DM.Workbench.Services
         {
             name = (name ?? "").Trim();
             if (row == null || name == row.Name) return;
-            if (name.Length == 0) throw new InvalidOperationException("任务名称不能为空。");
-            if (Exists(name, row)) throw new InvalidOperationException("任务名称已存在：" + name);
+            string err = CheckName(row, name);
+            if (err != null) throw new InvalidOperationException(err);
             Guard("Rename", row.Name);
             string old = row.Name;
             row.Item.Name = name; row.Refresh();
@@ -240,5 +240,31 @@ namespace DM.Workbench.Services
         private static string NewId() { return Guid.NewGuid().ToString("N"); }
         private static string Cut(string s) { return s != null && s.Length > MaxAuditText ? s.Substring(0, MaxAuditText) + "…（已截断）" : s; }
         private void SetDirty(bool v) { if (IsDirty == v) return; IsDirty = v; DirtyChanged?.Invoke(this, EventArgs.Empty); }
+        
+        /// <summary>列出引用了某个参数键（或整组）的任务名，供参数编辑窗口在重命名、删除前提示。</summary>
+        public IReadOnlyList<string> FindReferences(string key, bool isGroup)
+        {
+            return DM.Engine.TaskList.TaskReferences.Find(Rows.Select(r => r.Item), key, isGroup);
+        }
+
+        public string CheckName(TaskRow row, string name)
+        {
+            name = (name ?? "").Trim();
+            if (name.Length == 0) return "任务名称不能为空。";
+            if (name.Length > 64) return "任务名称不能超过 64 个字符。";
+            if (Exists(name, row)) return "任务名称已存在：" + name;
+            return null;
+        }
+
+        public static string CheckTimeout(int ms) { return ms < 0 ? "超时不能为负数。" : null; }
+
+        /// <summary>先整体校验，再逐项应用（每项没变化不写、不记审计）。校验失败什么都不改。</summary>
+        public void ApplyCommon(TaskRow row, string name, bool enabled, bool pauseAfter, int timeoutMs)
+        {
+            string err = CheckName(row, name) ?? CheckTimeout(timeoutMs);
+            if (err != null) throw new InvalidOperationException(err);
+            Rename(row, name); SetEnabled(row, enabled); SetPauseAfter(row, pauseAfter); SetTimeout(row, timeoutMs);
+        }
+
     }
 }

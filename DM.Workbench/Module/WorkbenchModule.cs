@@ -1,4 +1,5 @@
-﻿using DM.Engine.Hosting;
+﻿using DM.Core.TaskList;
+using DM.Engine.Hosting;
 using DM.Workbench.Services;
 using DM.Workbench.ViewModels;
 using DM.Workbench.Views;
@@ -22,11 +23,13 @@ namespace DM.Workbench.Module
             r.RegisterForNavigation<TaskListView, TaskListViewModel>();
             // r.RegisterForNavigation<EmptyTaskView>("EmptyTaskView");
             r.RegisterDialog<TaskEditDialog, TaskEditDialogViewModel>("TaskEditDialog");
-
+            r.RegisterSingleton<ITaskReferenceFinder>(c => c.Resolve<TaskListEditor>());
 
             r.RegisterDialog<TaskTypePickerDialog, TaskTypePickerViewModel>("TaskTypePickerDialog");
             r.RegisterDialog<NewProjectDialog, NewProjectDialogViewModel>("NewProjectDialog");
             r.RegisterDialog<OpenProjectDialog, OpenProjectDialogViewModel>("OpenProjectDialog");
+
+            r.RegisterSingleton<ITaskReferenceFinder>(c => c.Resolve<TaskListEditor>());
         }
 
         protected override void Attach(ModuleScope s) { s.ProjectPart<TaskListProjectPart>(); }

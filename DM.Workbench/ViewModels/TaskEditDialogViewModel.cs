@@ -1,4 +1,5 @@
 ﻿using DM.Core.TaskList;
+using DM.Workbench.Models;
 using DM.Workbench.Services;
 using Prism.Commands;
 using Prism.Ioc;
@@ -14,7 +15,7 @@ using System.Windows;
 namespace DM.Workbench.ViewModels
 {
     /// <summary>
-    /// 任务编辑弹窗：按任务类型的 EditorView 名字从容器创建编辑界面，交给它一个草稿会话。
+    /// 任务编辑弹窗：左边是统一的"通用配置"，右边按任务类型的 EditorView 名字从容器创建参数界面。
     /// 编辑界面每次都是新实例（弹窗关闭即释放），不会残留上一个任务的状态。
     /// </summary>
     public sealed class TaskEditDialogViewModel : BindableBase, IDialogAware
@@ -23,7 +24,7 @@ namespace DM.Workbench.ViewModels
         private DraftEditSession _session;
         private ITaskEditor _editor;
         private object _view;
-        private string _title = "编辑任务", _message = "";
+        private string _title = "编辑任务", _message = "", _typeName = "", _typeDesc = "";
         private bool _readOnly, _allowClose;
 
         public TaskEditDialogViewModel(IContainerProvider container)
@@ -37,6 +38,9 @@ namespace DM.Workbench.ViewModels
         public event Action<IDialogResult> RequestClose;
 
         public object Editor { get { return _view; } private set { SetProperty(ref _view, value); } }
+        public CommonDraft Common => _session == null ? null : _session.Common;
+        public string TypeName { get { return _typeName; } private set { SetProperty(ref _typeName, value); } }
+        public string TypeDescription { get { return _typeDesc; } private set { SetProperty(ref _typeDesc, value); } }
         public string Message { get { return _message; } private set { SetProperty(ref _message, value); } }
         public bool ReadOnly
         {
@@ -54,13 +58,18 @@ namespace DM.Workbench.ViewModels
             if (_session == null) return;
             try
             {
-                if (_editor != null) _editor.Flush();                       // 把 300ms 防抖里还没提交的改动先放进草稿
-                string err = _session.Validate();
+                if (_editor != null) _editor.Flush();                       // 把 300ms 防抖里还没提交的参数先放进草稿
+
+                string ce = _session.CommonError();                          // 名称为空、重名、超时为负：不允许保存
+                if (ce != null) { Message = ce; return; }
+
+                string err = _session.Validate();                            // 参数校验没过：可以选择仍然保存
                 if (err != null && !Confirm("参数校验没有通过：\n" + err + "\n\n仍要保存吗？（运行前预检仍会拦住这个任务）")) return;
+
                 _session.Apply();
                 Close(false);
             }
-            catch (Exception ex) { Message = ex.Message; }                  // 权限不足、重名等：留在窗口里
+            catch (Exception ex) { Message = ex.Message; }                  // 权限不足等：留在窗口里
         }
 
         private void OnCancel()
@@ -81,6 +90,8 @@ namespace DM.Workbench.ViewModels
             try
             {
                 if (_editor != null) _editor.Flush();
+                string ce = _session.CommonError();
+                if (ce != null) { Message = ce; return; }
                 _session.ApplyAndConvert();
                 Close(true);
             }
@@ -109,6 +120,9 @@ namespace DM.Workbench.ViewModels
             _session = p.GetValue<DraftEditSession>("Session");
             Title = p.GetValue<string>("Title");
             ReadOnly = _session.ReadOnly;
+            TypeName = _session.Type.DisplayName;
+            TypeDescription = _session.Type.Description;
+            RaisePropertyChanged(nameof(Common));
             _session.ReadOnlyChanged += OnReadOnlyChanged;
             _session.ConvertRequested += OnConvertRequested;
 
@@ -124,8 +138,7 @@ namespace DM.Workbench.ViewModels
             catch (Exception ex) { Message = "无法创建编辑界面：" + ex.Message; }
         }
 
-        private void OnReadOnlyChanged(object s, EventArgs e)
-        { if (_session != null) ReadOnly = _session.ReadOnly; }
+        private void OnReadOnlyChanged(object s, EventArgs e) { if (_session != null) ReadOnly = _session.ReadOnly; }
 
         public void OnDialogClosed()
         {

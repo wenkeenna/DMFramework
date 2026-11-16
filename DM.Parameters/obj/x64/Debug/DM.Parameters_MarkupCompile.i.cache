@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\项目\DMFramework\DM.Parameters\obj\x64\Debug\
+C:\Users\Administrator\Downloads\DMFramework-main\DMFramework-main\DM.Parameters\obj\x64\Debug\
 DM.Parameters
 none
 false
@@ -12,9 +12,9 @@ DEBUG;TRACE
 
 1-952994758
 
-9-997382409
-22-514408623
+101543124438
+221690268334
 Views\ParameterEditorDialog.xaml;
 
-False
+True
 

@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\项目\DMFramework\DM.Workbench\obj\x64\Debug\
+C:\Users\Administrator\Downloads\DMFramework-main\DMFramework-main\DM.Workbench\obj\x64\Debug\
 DM.Workbench
 none
 false
@@ -12,8 +12,8 @@ DEBUG;TRACE
 
 5-840536778
 
-1913561440
-22-1537886174
+20-133265692
+221690268334
 Views\NewProjectDialog.xaml;Views\OpenProjectDialog.xaml;Views\TaskEditDialog.xaml;Views\TaskListView.xaml;Views\TaskTypePickerDialog.xaml;
 
 False

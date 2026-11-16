@@ -7,6 +7,7 @@ using DM.Core.Projects;
 using DM.Engine.Hosting;
 using DM.Identity.Module;
 using DM.Log;
+using DM.Parameters.Module;
 using DM.Scripting.Commands;
 using DM.Scripting.UI.Module;
 using DM.Shell.Properties;
@@ -100,7 +101,7 @@ namespace DM.Shell
             c.AddModule<ScriptingModule>();
             c.AddModule<ScriptingUiModule>();
             c.AddModule<WorkbenchModule>();
-           // c.AddModule<ParametersModule>();
+            c.AddModule<ParametersModule>();
             ConfigureCustomerModules(c);
         }
 

@@ -63,6 +63,9 @@ namespace DM.Shell.ViewModels
             ResetEmergencyCommand = Cmd(OnResetEmergency, () => _emergency);
             ExitCommand = new DelegateCommand(() => { if (Application.Current.MainWindow != null) Application.Current.MainWindow.Close(); });
 
+            ParameterEditCommand = Cmd(() => _dialogs.ShowDialog("ParameterEditorDialog"),() => _life.Current != null && !_runner.IsRunning);
+
+
             _identity.SessionChanged += (s, e) => UiThread.Invoke(Refresh);
             _runner.RunningChanged += (s, e) => UiThread.Invoke(Refresh);
             hub.StateChanged += (s, e) => UiThread.Invoke(() => OnDeviceState(e));
@@ -94,7 +97,8 @@ namespace DM.Shell.ViewModels
         public DelegateCommand EmergencyStopCommand { get; }
         public DelegateCommand ResetEmergencyCommand { get; }
         public DelegateCommand ExitCommand { get; }
-
+        // 属性
+        public DelegateCommand ParameterEditCommand { get; }
         // ───── 用户 ─────
         private void OnSwitchUser()
         {

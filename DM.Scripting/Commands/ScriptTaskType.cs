@@ -23,6 +23,8 @@ namespace DM.Scripting.Commands
         public string Group => "通用";
         public string EditorView => "ScriptEditorView";         // 只是视图名字符串，不依赖 UI 项目
 
+        public string Description => "按行顺序执行脚本命令，可使用所有已注册的命令，支持 @参数 引用。";
+
         public string CreateDefaultData() { return "# 在这里编写脚本\r\n"; }
         public string Validate(string data) { return ScriptExec.Check(_reg, data ?? ""); }
         public Task ExecuteAsync(string data, IRunContext ctx, CancellationToken ct) { return ScriptExec.RunAsync(_reg, data ?? "", ctx, ct); }

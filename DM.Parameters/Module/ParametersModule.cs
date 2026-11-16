@@ -1,5 +1,6 @@
 ﻿using DM.Engine.Hosting;
 using DM.Parameters.ViewModels;
+using DM.Parameters.Views;
 using Prism.Ioc;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace DM.Parameters.Module
     {
         protected override void Register(IContainerRegistry r)
         { 
-           // r.RegisterDialog<ParameterEditorDialog, ParameterEditorViewModel>("ParameterEditorDialog"); 
+            r.RegisterDialog<ParameterEditorDialog, ParameterEditorViewModel>("ParameterEditorDialog"); 
+             
         }
     }
 }

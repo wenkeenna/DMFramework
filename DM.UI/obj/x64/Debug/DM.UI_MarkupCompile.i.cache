@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\项目\DMFramework\DM.UI\obj\x64\Debug\
+C:\Users\Administrator\Downloads\DMFramework-main\DMFramework-main\DM.UI\obj\x64\Debug\
 DM.UI
 none
 false
@@ -12,8 +12,8 @@ DEBUG;TRACE
 
 10-1480196598
 
-81075929295
-21-860674850
+9780591751
+211262719907
 Controls\ConvertPreviewPanel.xaml;Themes\Styles\Buttons.xaml;Themes\Styles\Colors.xaml;Themes\Styles\DataGrid.xaml;Themes\Styles\Expanders.xaml;Themes\Styles\Fields.xaml;Themes\Styles\Fonts.xaml;Themes\Styles\Icons.xaml;Themes\Styles\ListView.xaml;Themes\Themes.xaml;
 
 False

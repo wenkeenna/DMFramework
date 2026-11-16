@@ -114,6 +114,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CustomerXPackModule.cs" />
+    <Compile Include="Motion\XLeadshineOptions.cs" />
+    <Compile Include="Motion\XMotionProfile.cs" />
     <Compile Include="ReadPowerEditor.cs" />
     <Compile Include="ReadPowerEditorView.xaml.cs">
       <DependentUpon>ReadPowerEditorView.xaml</DependentUpon>
@@ -173,6 +175,10 @@
     <ProjectReference Include="..\DM.Engine\DM.Engine.csproj">
       <Project>{D02F65AC-0DD0-4141-B801-EABA85EA59E0}</Project>
       <Name>DM.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DM.Motion.Leadshine\DM.Motion.Leadshine.csproj">
+      <Project>{E1425078-35A6-43E1-9088-8E63D21C727A}</Project>
+      <Name>DM.Motion.Leadshine</Name>
     </ProjectReference>
     <ProjectReference Include="..\DM.Motion\DM.Motion.csproj">
       <Project>{D1480B3D-34EE-4FAD-8505-57C8DF7DFF09}</Project>

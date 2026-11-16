@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\DMFramework\DM.Shell\obj\x64\Debug\
+C:\Users\Administrator\Downloads\DMFramework-main\DMFramework-main\DM.Shell\obj\x64\Debug\
 DM.Shell
 none
 false
 DEBUG;TRACE
-D:\DMFramework\DM.Shell\App.xaml
+C:\Users\Administrator\Downloads\DMFramework-main\DMFramework-main\DM.Shell\App.xaml
 3753232781
 
 13-1395072862
-132-651263425
+133-44271542
 Views\AuditViewDialog.xaml;Views\LogPanel.xaml;Views\MainWindow.xaml;
 
 False
