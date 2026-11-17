@@ -20,9 +20,52 @@ namespace DM.Workbench.Views
     /// </summary>
     public partial class TaskEditDialog : UserControl
     {
+        private bool isDragging = false;
+        private Point startPoint;
         public TaskEditDialog()
         {
             InitializeComponent();
+
+            #region 窗口拖拽
+            this.MouseDown += (s, e) =>
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    isDragging = true;
+                    startPoint = e.GetPosition(this);
+                    Mouse.Capture(this);
+                }
+            };
+
+            this.MouseMove += (s, e) =>
+            {
+                if (isDragging)
+                {
+                    var currentPosition = e.GetPosition(this);
+                    var delta = currentPosition - startPoint;
+
+                    var window = Window.GetWindow(this);
+
+                    if (window != null)
+                    {
+                        window.Left += delta.X;
+                        window.Top += delta.Y;
+                    }
+                }
+
+
+            };
+
+            this.MouseUp += (s, e) =>
+            {
+                if (isDragging)
+                {
+                    isDragging = false;
+                    Mouse.Capture(null);
+                }
+            };
+
+            #endregion
         }
     }
 }

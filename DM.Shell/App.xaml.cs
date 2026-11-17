@@ -63,7 +63,7 @@ namespace DM.Shell
         {
             //AppPaths paths = CreatePaths();
             //paths.EnsureDirectories();
-            MessageBox.Show(AppPaths.Diagnose(), "启动自检");
+          //  MessageBox.Show(AppPaths.Diagnose(), "启动自检");
             AppPaths paths;
             try
             {

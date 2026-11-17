@@ -54,7 +54,7 @@ namespace DM.Parameters.ViewModels
             Scopes = new[]
             {
                 new ScopeItem(DataScope.Project, "项目参数", true),
-                new ScopeItem(DataScope.Machine, "设备参数（标定值等）", true),
+                new ScopeItem(DataScope.Machine, "设备参数", true),
                 new ScopeItem(DataScope.Runtime, "运行时（只读）", false)
             };
             _scope = Scopes[0];
@@ -117,6 +117,13 @@ namespace DM.Parameters.ViewModels
         public ParamKind NewKind { get { return _newKind; } set { SetProperty(ref _newKind, value); } }
         public string NewValue { get { return _newValue; } set { SetProperty(ref _newValue, value ?? ""); } }
 
+        private bool _showAdvanced;
+        public bool ShowAdvanced
+        {
+            get => _showAdvanced;
+            set => SetProperty(ref _showAdvanced, value);
+        }
+
         public DelegateCommand RefreshCommand { get; }
         public DelegateCommand AddCommand { get; }
         public DelegateCommand DeleteCommand { get; }
@@ -167,15 +174,34 @@ namespace DM.Parameters.ViewModels
         public bool TryApply(ParamLeafNode leaf, string text, out string error)
         {
             error = null;
-            if (!CanEditLeaf(leaf)) { error = "当前不可编辑。"; return false; }
-            if (!CheckRole("Edit", leaf.Key, out error)) return false;
+            if (!CanEditLeaf(leaf)) 
+            { 
+                error = "当前不可编辑。"; 
+                return false; 
+            }
+
+            if (!CheckRole("Edit", leaf.Key, out error)) 
+                return false;
 
             object v;
-            if (!ParameterValues.TryParse(text, leaf.Kind, out v, out error)) return false;
-            if (ParameterValues.Format(v) == leaf.Display) { leaf.IsEditing = false; return true; }      // 没变化：不写入，不产生审计
+            if (!ParameterValues.TryParse(text, leaf.Kind, out v, out error)) 
+                return false;
 
-            try { _data.Set(leaf.Key, v, leaf.Scope); }
-            catch (Exception ex) { error = "写入失败：" + ex.Message; return false; }
+            if (ParameterValues.Format(v) == leaf.Display) 
+            { 
+                leaf.IsEditing = false; 
+                return true; 
+            }      // 没变化：不写入，不产生审计
+
+            try 
+            { 
+                _data.Set(leaf.Key, v, leaf.Scope); 
+            }
+            catch (Exception ex) 
+            { 
+                error = "写入失败：" + ex.Message; 
+                return false; 
+            }
 
             leaf.SetValue(v);
             leaf.IsEditing = false;
@@ -188,28 +214,54 @@ namespace DM.Parameters.ViewModels
         public void ToggleBool(ParamLeafNode leaf, bool value)
         {
             string error;
-            if (!TryApply(leaf, value ? "true" : "false", out error)) { Status = error; leaf.SetValue(leaf.Value); }   // 失败时让复选框回到原值
+            if (!TryApply(leaf, value ? "true" : "false", out error)) 
+            { 
+                Status = error; 
+                leaf.SetValue(leaf.Value); 
+            }   // 失败时让复选框回到原值
         }
 
         // ───── 新增 ─────
         private void OnAdd()
         {
             string error, key = NewGroup.Trim() + "." + NewChild.Trim();
-            if (!CheckRole("Add", key, out error)) { Status = error; return; }
+
+            if (!CheckRole("Add", key, out error)) 
+            { 
+                Status = error; return; 
+            }
 
             error = ParameterValues.CheckKey(key);
-            if (error == null && _data.Contains(key)) error = "参数已存在：" + key;          // 容器的键在所有作用域内唯一
-            object v = null;
-            if (error == null) ParameterValues.TryParse(NewValue, NewKind, out v, out error);
-            if (error != null) { Status = error; return; }
+            if (error == null && _data.Contains(key)) 
+                error = "参数已存在：" + key;          // 容器的键在所有作用域内唯一
 
-            try { _data.Set(key, v, _scope.Scope); }
-            catch (Exception ex) { Status = "写入失败：" + ex.Message; return; }
+            object v = null;
+            if (error == null) 
+                ParameterValues.TryParse(NewValue, NewKind, out v, out error);
+
+            if (error != null) 
+            { 
+                Status = error; return; 
+            }
+
+            try 
+            { 
+                _data.Set(key, v, _scope.Scope); 
+            }
+            catch (Exception ex) 
+            { 
+                Status = "写入失败：" + ex.Message; 
+                return; 
+            }
 
             ParamGroupNode g = ParameterTree.EnsureGroup(Groups, NewGroup.Trim());
+
             var leaf = new ParamLeafNode(g.Name, NewChild.Trim(), _scope.Scope, v);
+
             InsertSorted(g, leaf);
+
             g.IsExpanded = true; g.RefreshCount();
+
             leaf.IsSelected = true; Selected = leaf;
             _changes++;
             NewChild = "";

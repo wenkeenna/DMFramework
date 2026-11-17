@@ -54,6 +54,7 @@
                                 VerticalAlignment="Center"
                                 Orientation="Horizontal">
                                 <TextBlock
+                                    x:Name="tagText"
                                     Margin="0,0,2,0"
                                     FontSize="{TemplateBinding FontSize}"
                                     Text="{TemplateBinding Tag}" />
@@ -70,6 +71,15 @@
 
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <!-- Tag 为空时隐藏并折叠，不占空间 -->
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                            <Setter TargetName="tagText" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                            <Setter TargetName="tagText" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+
+
                         <!--  悬浮：变浅  -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="border" Property="Background" Value="#6A737F" />

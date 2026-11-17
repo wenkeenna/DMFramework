@@ -3,67 +3,91 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.workbench\\views\\taskeditdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\views\\taskeditdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{CC1F8576-04BA-4486-A258-04455EDE5683}|DM.Parameters\\DM.Parameters.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.parameters\\viewmodels\\parametereditorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC1F8576-04BA-4486-A258-04455EDE5683}|DM.Parameters\\DM.Parameters.csproj|solutionrelative:dm.parameters\\viewmodels\\parametereditorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1480B3D-34EE-4FAD-8505-57C8DF7DFF09}|DM.Motion\\DM.Motion.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.motion\\services\\motioncontracts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CC1F8576-04BA-4486-A258-04455EDE5683}|DM.Parameters\\DM.Parameters.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.parameters\\views\\parametereditordialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CC1F8576-04BA-4486-A258-04455EDE5683}|DM.Parameters\\DM.Parameters.csproj|solutionrelative:dm.parameters\\views\\parametereditordialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D1480B3D-34EE-4FAD-8505-57C8DF7DFF09}|DM.Motion\\DM.Motion.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.motion\\services\\motioncontracts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D1480B3D-34EE-4FAD-8505-57C8DF7DFF09}|DM.Motion\\DM.Motion.csproj|solutionrelative:dm.motion\\services\\motioncontracts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.workbench\\viewmodels\\taskeditdialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\viewmodels\\taskeditdialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.ui\\themes\\styles\\buttons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|solutionrelative:dm.ui\\themes\\styles\\buttons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.workbench\\services\\drafteditsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\services\\drafteditsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{80FF8FE9-AE86-43FE-9685-2800E69BCD63}|DM.Shell\\DM.Shell.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.shell\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80FF8FE9-AE86-43FE-9685-2800E69BCD63}|DM.Shell\\DM.Shell.csproj|solutionrelative:dm.shell\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.workbench\\services\\tasklisteditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\services\\tasklisteditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CC1F8576-04BA-4486-A258-04455EDE5683}|DM.Parameters\\DM.Parameters.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.parameters\\views\\parametereditordialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC1F8576-04BA-4486-A258-04455EDE5683}|DM.Parameters\\DM.Parameters.csproj|solutionrelative:dm.parameters\\views\\parametereditordialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.workbench\\models\\commondraft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\models\\commondraft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.workbench\\views\\taskeditdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\views\\taskeditdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{30AC30F0-D41F-4633-BF6E-EB36E48ADF29}|DM.Scripting\\DM.Scripting.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.scripting\\commands\\scripttasktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30AC30F0-D41F-4633-BF6E-EB36E48ADF29}|DM.Scripting\\DM.Scripting.csproj|solutionrelative:dm.scripting\\commands\\scripttasktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.workbench\\views\\taskeditdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\views\\taskeditdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D02F65AC-0DD0-4141-B801-EABA85EA59E0}|DM.Engine\\DM.Engine.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.engine\\tasklist\\jsontasktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D02F65AC-0DD0-4141-B801-EABA85EA59E0}|DM.Engine\\DM.Engine.csproj|solutionrelative:dm.engine\\tasklist\\jsontasktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4383560A-776C-4758-A092-6F0134C7884F}|DM.Core\\DM.Core.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.core\\tasklist\\tasklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4383560A-776C-4758-A092-6F0134C7884F}|DM.Core\\DM.Core.csproj|solutionrelative:dm.core\\tasklist\\tasklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.ui\\taskediting\\taskeditorviewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|solutionrelative:dm.ui\\taskediting\\taskeditorviewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.workbench\\views\\tasklistview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.workbench\\views\\tasklistview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\views\\tasklistview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.ui\\themes\\styles\\fonts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.workbench\\viewmodels\\taskeditdialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\viewmodels\\taskeditdialogviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.workbench\\services\\drafteditsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\services\\drafteditsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.workbench\\services\\tasklisteditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\services\\tasklisteditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.workbench\\models\\commondraft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3833C3D-6F05-4194-9944-FEB6425E813A}|DM.Workbench\\DM.Workbench.csproj|solutionrelative:dm.workbench\\models\\commondraft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30AC30F0-D41F-4633-BF6E-EB36E48ADF29}|DM.Scripting\\DM.Scripting.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.scripting\\commands\\scripttasktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30AC30F0-D41F-4633-BF6E-EB36E48ADF29}|DM.Scripting\\DM.Scripting.csproj|solutionrelative:dm.scripting\\commands\\scripttasktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D02F65AC-0DD0-4141-B801-EABA85EA59E0}|DM.Engine\\DM.Engine.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.engine\\tasklist\\jsontasktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D02F65AC-0DD0-4141-B801-EABA85EA59E0}|DM.Engine\\DM.Engine.csproj|solutionrelative:dm.engine\\tasklist\\jsontasktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4383560A-776C-4758-A092-6F0134C7884F}|DM.Core\\DM.Core.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.core\\tasklist\\tasklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4383560A-776C-4758-A092-6F0134C7884F}|DM.Core\\DM.Core.csproj|solutionrelative:dm.core\\tasklist\\tasklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.ui\\taskediting\\taskeditorviewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|solutionrelative:dm.ui\\taskediting\\taskeditorviewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.ui\\themes\\styles\\fonts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|solutionrelative:dm.ui\\themes\\styles\\fonts.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.ui\\themes\\themes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.ui\\themes\\themes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|solutionrelative:dm.ui\\themes\\themes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.ui\\themes\\styles\\icons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.ui\\themes\\styles\\icons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|solutionrelative:dm.ui\\themes\\styles\\icons.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.ui\\themes\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.ui\\themes\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|solutionrelative:dm.ui\\themes\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|c:\\users\\administrator\\downloads\\dmframework-main\\dmframework-main\\dm.ui\\controls\\convertpreviewpanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\dm.ui\\controls\\convertpreviewpanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F8E6927B-BB1E-4455-AEB5-3E8717ECE028}|DM.UI\\DM.UI.csproj|solutionrelative:dm.ui\\controls\\convertpreviewpanel.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -74,23 +98,96 @@
       "DocumentGroups": [
         {
           "DockedHeight": 88,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Shell\\App.xaml.cs",
+              "RelativeDocumentMoniker": "DM.Shell\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Shell\\App.xaml.cs",
+              "RelativeToolTip": "DM.Shell\\App.xaml.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAAAEUAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T06:15:09.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ParameterEditorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Parameters\\ViewModels\\ParameterEditorViewModel.cs",
+              "RelativeDocumentMoniker": "DM.Parameters\\ViewModels\\ParameterEditorViewModel.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Parameters\\ViewModels\\ParameterEditorViewModel.cs",
+              "RelativeToolTip": "DM.Parameters\\ViewModels\\ParameterEditorViewModel.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAYwEoAAABtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T05:46:28.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ParameterEditorDialog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Parameters\\Views\\ParameterEditorDialog.xaml.cs",
+              "RelativeDocumentMoniker": "DM.Parameters\\Views\\ParameterEditorDialog.xaml.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Parameters\\Views\\ParameterEditorDialog.xaml.cs",
+              "RelativeToolTip": "DM.Parameters\\Views\\ParameterEditorDialog.xaml.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T05:45:16.816Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Buttons.xaml",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\Themes\\Styles\\Buttons.xaml",
+              "RelativeDocumentMoniker": "DM.UI\\Themes\\Styles\\Buttons.xaml",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\Themes\\Styles\\Buttons.xaml",
+              "RelativeToolTip": "DM.UI\\Themes\\Styles\\Buttons.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-17T01:43:57.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ParameterEditorDialog.xaml",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Parameters\\Views\\ParameterEditorDialog.xaml",
+              "RelativeDocumentMoniker": "DM.Parameters\\Views\\ParameterEditorDialog.xaml",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Parameters\\Views\\ParameterEditorDialog.xaml",
+              "RelativeToolTip": "DM.Parameters\\Views\\ParameterEditorDialog.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-17T01:21:52.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TaskEditDialog.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Views\\TaskEditDialog.xaml.cs",
+              "RelativeDocumentMoniker": "DM.Workbench\\Views\\TaskEditDialog.xaml.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Views\\TaskEditDialog.xaml.cs",
+              "RelativeToolTip": "DM.Workbench\\Views\\TaskEditDialog.xaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAADwvxcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T01:13:57.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "TaskEditDialog.xaml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Views\\TaskEditDialog.xaml",
               "RelativeDocumentMoniker": "DM.Workbench\\Views\\TaskEditDialog.xaml",
               "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Views\\TaskEditDialog.xaml",
               "RelativeToolTip": "DM.Workbench\\Views\\TaskEditDialog.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-11-16T09:33:05.45Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T09:33:05.45Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "TaskEditDialogViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\ViewModels\\TaskEditDialogViewModel.cs",
               "RelativeDocumentMoniker": "DM.Workbench\\ViewModels\\TaskEditDialogViewModel.cs",
@@ -98,12 +195,11 @@
               "RelativeToolTip": "DM.Workbench\\ViewModels\\TaskEditDialogViewModel.cs",
               "ViewState": "AgIAAHUAAAAAAAAAAIBAwJQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T09:32:26.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T09:32:26.622Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "DraftEditSession.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Services\\DraftEditSession.cs",
               "RelativeDocumentMoniker": "DM.Workbench\\Services\\DraftEditSession.cs",
@@ -111,12 +207,11 @@
               "RelativeToolTip": "DM.Workbench\\Services\\DraftEditSession.cs",
               "ViewState": "AgIAACUAAAAAAAAAAIBAwEQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T09:31:21.72Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T09:31:21.72Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "TaskListEditor.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Services\\TaskListEditor.cs",
               "RelativeDocumentMoniker": "DM.Workbench\\Services\\TaskListEditor.cs",
@@ -124,12 +219,11 @@
               "RelativeToolTip": "DM.Workbench\\Services\\TaskListEditor.cs",
               "ViewState": "AgIAAGYAAAAAAAAAAAAAAIYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T09:29:15.015Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T09:29:15.015Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "CommonDraft.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Models\\CommonDraft.cs",
               "RelativeDocumentMoniker": "DM.Workbench\\Models\\CommonDraft.cs",
@@ -137,12 +231,11 @@
               "RelativeToolTip": "DM.Workbench\\Models\\CommonDraft.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAA1wBwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T09:28:42.531Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T09:28:42.531Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "ScriptTaskType.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Scripting\\Commands\\ScriptTaskType.cs",
               "RelativeDocumentMoniker": "DM.Scripting\\Commands\\ScriptTaskType.cs",
@@ -150,12 +243,11 @@
               "RelativeToolTip": "DM.Scripting\\Commands\\ScriptTaskType.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABkAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T09:27:38.246Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T09:27:38.246Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 14,
               "Title": "JsonTaskType.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Engine\\TaskList\\JsonTaskType.cs",
               "RelativeDocumentMoniker": "DM.Engine\\TaskList\\JsonTaskType.cs",
@@ -163,12 +255,11 @@
               "RelativeToolTip": "DM.Engine\\TaskList\\JsonTaskType.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAABIAAAB0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T09:24:56.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T09:24:56.901Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "TaskList.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Core\\TaskList\\TaskList.cs",
               "RelativeDocumentMoniker": "DM.Core\\TaskList\\TaskList.cs",
@@ -176,12 +267,11 @@
               "RelativeToolTip": "DM.Core\\TaskList\\TaskList.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAYwB4AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T09:23:54.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T09:23:54.413Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 16,
               "Title": "TaskEditorViewModelBase.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\TaskEditing\\TaskEditorViewModelBase.cs",
               "RelativeDocumentMoniker": "DM.UI\\TaskEditing\\TaskEditorViewModelBase.cs",
@@ -189,12 +279,11 @@
               "RelativeToolTip": "DM.UI\\TaskEditing\\TaskEditorViewModelBase.cs",
               "ViewState": "AgIAADcAAAAAAAAAAIBAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-16T08:49:50.981Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T08:49:50.981Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "Icons.xaml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\Themes\\Styles\\Icons.xaml",
               "RelativeDocumentMoniker": "DM.UI\\Themes\\Styles\\Icons.xaml",
@@ -206,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "Colors.xaml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\Themes\\Styles\\Colors.xaml",
               "RelativeDocumentMoniker": "DM.UI\\Themes\\Styles\\Colors.xaml",
@@ -218,19 +307,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "ConvertPreviewPanel.xaml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\Controls\\ConvertPreviewPanel.xaml",
               "RelativeDocumentMoniker": "DM.UI\\Controls\\ConvertPreviewPanel.xaml",
               "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\Controls\\ConvertPreviewPanel.xaml",
               "RelativeToolTip": "DM.UI\\Controls\\ConvertPreviewPanel.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-11-16T06:44:16.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T06:44:16.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "Fonts.xaml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\Themes\\Styles\\Fonts.xaml",
               "RelativeDocumentMoniker": "DM.UI\\Themes\\Styles\\Fonts.xaml",
@@ -242,7 +330,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "Themes.xaml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.UI\\Themes\\Themes.xaml",
               "RelativeDocumentMoniker": "DM.UI\\Themes\\Themes.xaml",
@@ -254,25 +342,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 8,
               "Title": "TaskListView.xaml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Views\\TaskListView.xaml",
               "RelativeDocumentMoniker": "DM.Workbench\\Views\\TaskListView.xaml",
               "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Workbench\\Views\\TaskListView.xaml",
               "RelativeToolTip": "DM.Workbench\\Views\\TaskListView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-11-16T06:36:03.217Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-16T06:36:03.217Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MotionContracts.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Motion\\Services\\MotionContracts.cs",
               "RelativeDocumentMoniker": "DM.Motion\\Services\\MotionContracts.cs",
               "ToolTip": "C:\\Users\\Administrator\\Downloads\\DMFramework-main\\DMFramework-main\\DM.Motion\\Services\\MotionContracts.cs",
               "RelativeToolTip": "DM.Motion\\Services\\MotionContracts.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAMwDAAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAEBAwDAAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-16T05:46:47.413Z",
               "EditorCaption": ""
