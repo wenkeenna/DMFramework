@@ -59,6 +59,12 @@ namespace DM.Core.Identity
         SignInResult SignIn(string username, string password);
         void SignOut();
         IdentityResult ChangePassword(string oldPassword, string newPassword);
+
+        /// <summary>
+        /// 登录界面用：返回可登录的用户名（仅启用账号，按名称排序）。
+        /// 不需要登录权限；只返回名字，不含角色、锁定状态等敏感信息。
+        /// </summary>
+        IReadOnlyList<string> ListLoginNames();
     }
 
     /// <summary>所有方法内部都校验当前用户是管理员，否则返回失败并写 Denied 审计。</summary>

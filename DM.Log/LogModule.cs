@@ -17,6 +17,9 @@ namespace DM.Log
             r.RegisterSingleton<LogFileSink>();
         }
 
-        protected override void Attach(ModuleScope s) { s.Device<LogFileSink>(); }      // 解析即创建，订阅生效
+        protected override void Attach(ModuleScope s) 
+        { 
+            s.Device<LogFileSink>(); 
+        }      // 解析即创建，订阅生效
     }
 }

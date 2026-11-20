@@ -241,6 +241,67 @@ namespace DM.Motion.Services
             return d;
         }
 
+        private readonly Dictionary<string, CancellationTokenSource> _jog = new Dictionary<string, CancellationTokenSource>(StringComparer.OrdinalIgnoreCase);
+        /// <summary>
+        /// 连续点动：占用轴（点动期间其他运动被拒绝），后台每 20ms 检查：越过软限位、报警、驱动已停止，就停轴并释放。
+        /// JogStop、Stop、StopAll（含急停）都会结束它。
+        /// </summary>
+        public void JogStart(string axis, bool positive, double velocity)
+        {
+            AxisConfig a = Axis(axis);
+            IMotionDriver d = Ready();
+            var ex = d as IMotionDriverExtras;
+            if (ex == null) throw new InvalidOperationException("当前运动驱动不支持点动。");
+
+            double v = Math.Min(velocity > 0 ? velocity : a.DefaultVelocity, a.MaxVelocity);
+            var release = Lock(a.Name);                         // 轴正在运动则抛"正在运动"
+            var cts = new CancellationTokenSource();
+            try
+            {
+                lock (_jog) _jog[a.Name] = cts;
+                ex.StartJog(a, positive, new MoveParams { VelocityPulse = v * a.PulsePerUnit, AccTime = a.AccTime, DecTime = a.DecTime });
+            }
+            catch { lock (_jog) _jog.Remove(a.Name); release.Dispose(); throw; }
+
+            Task.Run(async () =>
+            {
+                try
+                {
+                    var sw = Stopwatch.StartNew();
+                    while (!cts.IsCancellationRequested)
+                    {
+                        await Task.Delay(20).ConfigureAwait(false);
+                        AxisState s = d.GetState(a);
+                        double pos = s.PositionPulse / a.PulsePerUnit;
+                        bool beyond = (positive && a.MaxPos.HasValue && pos >= a.MaxPos.Value) || (!positive && a.MinPos.HasValue && pos <= a.MinPos.Value);
+                        if (s.Alarm || beyond) { SafeStop(d, a, true); break; }
+                        if (!s.IsMoving && sw.ElapsedMilliseconds > 100) break;      // 碰到硬限位等，驱动已自行停止
+                    }
+                }
+                catch (Exception e) { _log.Error("点动监控失败，已停轴：" + a.Name, e); SafeStop(d, a, true); }
+                finally { lock (_jog) _jog.Remove(a.Name); release.Dispose(); }
+            });
+        }
+
+        public void JogStop(string axis) { Stop(axis); }
+
+        public Task ClearAlarmAsync(string axis, CancellationToken ct)
+        {
+            var ex = Ready() as IMotionDriverExtras;
+            if (ex == null) throw new InvalidOperationException("当前运动驱动不支持清报警。");
+            return ex.ClearAlarmAsync(Axis(axis), ct);
+        }
+
+        public void SetEnable(string axis, bool enable)
+        {
+            var ex = Ready() as IMotionDriverExtras;
+            if (ex == null) throw new InvalidOperationException("当前运动驱动不支持使能控制。");
+            ex.SetEnable(Axis(axis), enable);
+        }
+
+
+
+
         private AxisConfig Axis(string n)
         { AxisConfig a; if (!_axes.TryGetValue(n ?? "", out a)) throw new InvalidOperationException("未定义的轴：" + n); return a; }
         private IoConfig In(string n)
@@ -256,6 +317,16 @@ namespace DM.Motion.Services
                 foreach (string x in names) _busy.Add(x);
             }
             return new Releaser(() => { lock (_busy) foreach (string x in names) _busy.Remove(x); });
+        }
+
+        Task IMotionService.JogStart(string axis, bool positive, double speed)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IMotionService.JogStop(string axis)
+        {
+            throw new NotImplementedException();
         }
 
         private sealed class Releaser : IDisposable

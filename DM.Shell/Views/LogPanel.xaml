@@ -41,7 +41,9 @@
             x:Name="LogList"
             FontFamily="Consolas"
             ItemsSource="{Binding View}"
-            VirtualizingPanel.IsVirtualizing="True">
+            ScrollViewer.CanContentScroll="True"
+            VirtualizingPanel.IsVirtualizing="True"
+            VirtualizingPanel.VirtualizationMode="Recycling" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="ToolTip" Value="{Binding Detail}" />

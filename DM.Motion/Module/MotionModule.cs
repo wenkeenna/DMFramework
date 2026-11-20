@@ -7,6 +7,7 @@ using DM.Motion.Tasks;
 using DM.Scripting.Commands;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,15 @@ namespace DM.Motion.Module
             r.RegisterForNavigation<MultiAxisEditorView, MultiAxisEditorViewModel>("MultiAxisEditorView");
             r.RegisterForNavigation<Line2EditorView, Line2EditorViewModel>("Line2EditorView");
             r.RegisterForNavigation<IoExecutionEditorView, IoExecutionEditorViewModel>("IoExecutionEditorView");
+
+
+            if (!r.IsRegistered<Manual.IManualLayout>())          // 客户项目注册了自己的布局就不覆盖
+                r.RegisterSingleton<Manual.IManualLayout, DM.Motion.Manual.DefaultManualLayout>();
+
+            r.RegisterSingleton<Manual.ViewModels.ManualMotionViewModel>();
+            r.Register<Manual.Views.ManualMotionView>();
+
+         
         }
 
         protected override void Attach(ModuleScope s)
@@ -47,6 +57,8 @@ namespace DM.Motion.Module
              .TaskType<SingleAxisTaskType>().TaskType<MultiAxisTaskType>().TaskType<Line2TaskType>().TaskType<IoExecutionTaskType>()
              .Command<MoveAbsCommand>().Command<MoveRelCommand>().Command<HomeCommand>()
              .Command<MoveMultiCommand>().Command<Line2Command>().Command<SetOutCommand>().Command<WaitInCommand>();
+
+            s.Resolve<IRegionManager>().RegisterViewWithRegion("ManualMotionRegion", typeof(Manual.Views.ManualMotionView));
         }
     }
 

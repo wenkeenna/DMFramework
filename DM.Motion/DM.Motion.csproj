@@ -83,6 +83,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\MotionCommands.cs" />
+    <Compile Include="Manual\ManualLayout.cs" />
+    <Compile Include="Manual\ViewModels\ManualMotionViewModel.cs" />
+    <Compile Include="Manual\Views\ManualMotionView.xaml.cs">
+      <DependentUpon>ManualMotionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\MotionModels.cs" />
     <Compile Include="Models\MotionProfile.cs" />
     <Compile Include="Module\MotionModule.cs" />
@@ -135,6 +140,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Manual\Views\ManualMotionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TaskEditors\IoExecutionEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,5 +183,6 @@
       <Name>DM.UI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

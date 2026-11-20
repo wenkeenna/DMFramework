@@ -1,4 +1,5 @@
 ﻿using DM.Core.Events;
+using DM.Core.Identity;
 using DM.Core.Logging;
 using Prism.Commands;
 using Prism.Events;
@@ -38,8 +39,8 @@ namespace DM.Shell.ViewModels
         private int _pending;
         private LogLevel _minLevel = LogLevel.Info;
         private bool _autoScroll = true;
-
-        public LogPanelViewModel(IEventAggregator events)
+    
+        public LogPanelViewModel(IEventAggregator events, IAccountService accounts)
         {
             View = CollectionViewSource.GetDefaultView(Rows);
             View.Filter = o => ((LogRow)o).Level >= _minLevel;

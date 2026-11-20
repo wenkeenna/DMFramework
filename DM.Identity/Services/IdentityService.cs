@@ -131,7 +131,17 @@ namespace DM.Identity.Services
             }
             Raise();
         }
-
+        public IReadOnlyList<string> ListLoginNames()
+        {
+            lock (_gate)
+            {
+                return _store.List()
+                             .Where(a => a.Enabled)                          // 停用账号不显示
+                             .Select(a => a.Username)
+                             .OrderBy(u => u, StringComparer.OrdinalIgnoreCase)
+                             .ToList();
+            }
+        }
         public IdentityResult ChangePassword(string oldPassword, string newPassword)
         {
             lock (_gate)
@@ -306,5 +316,7 @@ namespace DM.Identity.Services
         }
 
         private void Raise() { var h = SessionChanged; if (h != null) h(this, EventArgs.Empty); }
+
+      
     }
 }

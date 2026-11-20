@@ -115,6 +115,7 @@
     </ApplicationDefinition>
     <Compile Include="CustomerXPackModule.cs" />
     <Compile Include="Motion\XLeadshineOptions.cs" />
+    <Compile Include="Motion\XManualLayout.cs" />
     <Compile Include="Motion\XMotionProfile.cs" />
     <Compile Include="ReadPowerEditor.cs" />
     <Compile Include="ReadPowerEditorView.xaml.cs">

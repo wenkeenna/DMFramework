@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-5717678131
+6-185270030
 
-22-445095967
+251615230377
 23-1100670519
-TaskEditors\IoExecutionEditorView.xaml;TaskEditors\IoStepListEditor.xaml;TaskEditors\Line2EditorView.xaml;TaskEditors\MultiAxisEditorView.xaml;TaskEditors\SingleAxisEditorView.xaml;
+Manual\Views\ManualMotionView.xaml;TaskEditors\IoExecutionEditorView.xaml;TaskEditors\IoStepListEditor.xaml;TaskEditors\Line2EditorView.xaml;TaskEditors\MultiAxisEditorView.xaml;TaskEditors\SingleAxisEditorView.xaml;
 
 False
 

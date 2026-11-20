@@ -62,6 +62,11 @@ namespace DM.Motion.Services
         Task MoveAsync(string axis, double position, bool relative, double? velocity, CancellationToken ct);
         Task Line2Async(string axisA, double posA, string axisB, double posB, double velocity, CancellationToken ct);
         Task HomeAsync(string axis, CancellationToken ct);
+
+        Task JogStart(string axis,bool positive,double speed);
+        Task JogStop(string axis);
+        Task ClearAlarmAsync(string axis, CancellationToken ct);
+
         void Stop(string axis);
         void StopAll();
         double GetPosition(string axis);

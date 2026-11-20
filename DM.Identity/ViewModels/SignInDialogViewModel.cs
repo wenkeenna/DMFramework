@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DM.Identity.ViewModels
 {
@@ -15,13 +16,19 @@ namespace DM.Identity.ViewModels
         private readonly IIdentityService _identity;
         private string _username = "", _password = "", _message = "";
         private bool _busy;
-
-        public SignInDialogViewModel(IIdentityService identity)
+        private IReadOnlyList<string> _usernames = new string[0];
+        private IAccountService _accounts;
+        public SignInDialogViewModel(IIdentityService identity, IAccountService accounts)
         {
             _identity = identity;
-            SignInCommand = new DelegateCommand(async () => await SignInAsync(), () => !_busy && _username.Trim().Length > 0)
-                .ObservesProperty(() => Username);
+
+            _accounts = accounts;
+
+            SignInCommand = new DelegateCommand(async () => await SignInAsync(), () => !_busy && _username.Trim().Length > 0).ObservesProperty(() => Username);
+         
             CancelCommand = new DelegateCommand(() => RequestClose?.Invoke(new DialogResult(ButtonResult.Cancel)));
+
+          
         }
 
         public string Title => "用户登录";
@@ -30,12 +37,17 @@ namespace DM.Identity.ViewModels
         public string Username { get { return _username; } set { SetProperty(ref _username, value ?? ""); } }
         public string Password { get { return _password; } set { SetProperty(ref _password, value ?? ""); } }
         public string Message { get { return _message; } private set { SetProperty(ref _message, value); } }
+
+        public IReadOnlyList<string> Usernames
+        { get { return _usernames; } private set { SetProperty(ref _usernames, value); } }
+
         public DelegateCommand SignInCommand { get; }
         public DelegateCommand CancelCommand { get; }
-
+        public DelegateCommand TestCommand { get; }
         private async Task SignInAsync()
         {
-            _busy = true; SignInCommand.RaiseCanExecuteChanged(); Message = "";
+            _busy = true; 
+            SignInCommand.RaiseCanExecuteChanged(); Message = "";
             try
             {
                 string u = Username, p = Password;
@@ -49,6 +61,18 @@ namespace DM.Identity.ViewModels
 
         public bool CanCloseDialog() { return true; }
         public void OnDialogClosed() { Password = ""; }
-        public void OnDialogOpened(IDialogParameters parameters) { }
+        public void OnDialogOpened(IDialogParameters parameters) 
+        {
+            try
+            {
+                Usernames = _identity.ListLoginNames();
+                if (string.IsNullOrWhiteSpace(Username) && Usernames.Count > 0)
+                    Username = Usernames[0];            // 默认选中第一个
+            }
+            catch
+            {
+                Usernames = new string[0];              // 列不出来不影响登录：仍然可以手输
+            }
+        }
     }
 }
